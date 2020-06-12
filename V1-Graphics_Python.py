@@ -6,7 +6,7 @@ import time
 import math
 from random import randint
 
-MainTextMode = 'hdat'
+MainTextMode = 'hour'
 
 def hdat_Pressed():
    global MainTextMode
@@ -19,6 +19,8 @@ def mindat_Pressed():
 def Hour_Pressed():
    global MainTextMode
    MainTextMode = 'hour'
+   OBC.show()
+   OBC.focus()
 
 def Date_Pressed():
    global MainTextMode
@@ -123,23 +125,16 @@ def Track_Data():
     GaugeCluster.delete(Q4MainReading)
     Q4Needle = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), Q4yc + (math.sin((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = Q4TargetP,size=15)
-    
-    #Warnings
-    global WB1Color
-    global WB1
-    if Q4TargetP/(Q4Max*.5):
-        WB1Color = "red"
-    else:
-        WB1Color = "black"
-    WB1 = GaugeCluster.rectangle(WB1x1, WB1y1, WB1x2, WB1y2, color=WB1Color)
-    WB1Text = GaugeCluster.text(WB1x1+15 , WB1y1+40, text = "FUCK",size=15, color="black")
+
+#******************************************
 #----------------OBC MENU----------------
+#******************************************
 OBC = App(title="OBC", layout="grid")
 OBC.bg = "#5E0000"
 spacer = Text(OBC, text = "                                                                                                        ", font="digital-7", height="1", size=9, color="orange", grid=[0,0])
 spacer = Text(OBC, text="", grid=[0,1])
 OBCMainText = Text(OBC, text = "Loading", font="digital-7", height="2", size=50, color="orange", grid=[0,2])
-OBCMainText.repeat(1000, OBC_Data)
+OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,3])
 spacer = Text(OBC, text="", grid=[0,4])
 spacer = Text(OBC, text="", grid=[0,5])
@@ -162,8 +157,9 @@ OBCmemo = PushButton(OBC, command=Memo_Pressed, text="        Memo", align="righ
 OBCmemo.bg = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", width="fill", grid=[0,13])
 TrackMode.bg = "white"
-
+#******************************************
 #----------------TRACK MENU----------------
+#******************************************
 #TRACK = App(title="TRACK")
 TRACK = Window(OBC, title = "TRACK")
 TRACK.bg = "BLACK"
@@ -181,7 +177,6 @@ GaugeCluster.oval(0, 0, GaugeWidth/(NumberOfGauges/2), GaugeHeight/(NumberOfGaug
 GaugeCluster.oval(GaugeWidth/(NumberOfGauges/2), 0, GaugeWidth, GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
 GaugeCluster.oval(0, GaugeHeight, GaugeWidth/(NumberOfGauges/2), GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
 GaugeCluster.oval(GaugeWidth/(NumberOfGauges/2), GaugeHeight, GaugeWidth, GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
-
 #Gauge Needles
 radius = GaugeWidth/4
 #Q1 Gauge
@@ -189,15 +184,16 @@ Q1xc = radius
 Q1yc = radius
 Q1x = radius
 Q1y = 0
-
-Q1TargetP = 0
+#///Q1 VARIABLES////
 Q1Min = 0
 Q1Max = 100
-Q1Title = "Temp"
-
+Q1Title = "O Temp"
+Q1TitleSize = 13
+#///////////////////
+Q1TargetP = 0
 Q1Needle = GaugeCluster.line(Q1xc, Q1yc, Q1x, Q1y, color="red", width=5)
-Q1MainText = GaugeCluster.text(Q1xc , Q1yc+10, text = Q1Title,size=15)
-Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = "0",size=15)
+Q1MainText = GaugeCluster.text(Q1xc , Q1yc+10, text = Q1Title,size=Q1TitleSize)
+Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = "0",size=14)
 Q1MinText = GaugeCluster.text(Q1xc-30 , Q1yc+55, text = Q1Min,size=10)
 Q1MaxText = GaugeCluster.text(Q1xc+50, Q1yc-10, text = Q1Max,size=10)
 Q1Max1 = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="red", width=4)
@@ -207,21 +203,21 @@ for i in range(1, 10):
     Q1Dashes = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q1yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="black", width=2)
 for i in range(0, 11):
     Q1DashCover = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q1MaxRadius), Q1yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q1MaxRadius), color="white", width=5)
-
 #Q2 Gauge
 Q2xc = radius*3
 Q2yc = radius
 Q2x = radius*2
 Q2y = 0
-
-Q2TargetP = 0
+#///Q2 VARIABLES////
 Q2Min = 10
 Q2Max = 90
-Q2Title = "Temp"
-
+Q2Title = "C Temp"
+Q2TitleSize = 13
+#///////////////////
+Q2TargetP = 0
 Q2Needle = GaugeCluster.line(Q2xc, Q2yc, Q2x, Q2y, color="red", width=5)
-Q2MainText = GaugeCluster.text(Q2xc , Q2yc+10, text = Q2Title,size=15)
-Q2MainReading = GaugeCluster.text(Q2xc , Q2yc+35, text = "0",size=15)
+Q2MainText = GaugeCluster.text(Q2xc , Q2yc+10, text = Q2Title,size=Q2TitleSize)
+Q2MainReading = GaugeCluster.text(Q2xc , Q2yc+35, text = "0",size=14)
 Q2MinText = GaugeCluster.text(Q2xc-30 , Q2yc+55, text = Q2Min,size=10)
 Q2MaxText = GaugeCluster.text(Q2xc+50, Q2yc-10, text = Q2Max,size=10)
 Q2Max1 = GaugeCluster.line(Q2xc, Q2yc,Q2xc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q2yc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="red", width=4)
@@ -231,21 +227,21 @@ for i in range(1, 10):
     Q2Dashes = GaugeCluster.line(Q2xc, Q2yc,Q2xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q2yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="black", width=2)
 for i in range(0, 11):
     Q2DashCover = GaugeCluster.line(Q2xc, Q2yc,Q2xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q2MaxRadius), Q2yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q2MaxRadius), color="white", width=5)
-
 #Q3 Gauge
 Q3xc = radius
 Q3yc = radius*3
 Q3x = radius
 Q3y = 0
-
-Q3TargetP = 0
+#///Q3 VARIABLES////
 Q3Min = 20
 Q3Max = 80
-Q3Title = "Temp"
-
+Q3Title = "O Press"
+Q3TitleSize = 13
+#///////////////////
+Q3TargetP = 0
 Q3Needle = GaugeCluster.line(Q3xc, Q3yc, Q3x, Q3y, color="red", width=5)
-Q3MainText = GaugeCluster.text(Q3xc , Q3yc+10, text = Q3Title,size=15)
-Q3MainReading = GaugeCluster.text(Q3xc , Q3yc+35, text = "0",size=15)
+Q3MainText = GaugeCluster.text(Q3xc , Q3yc+10, text = Q3Title,size=Q3TitleSize)
+Q3MainReading = GaugeCluster.text(Q3xc , Q3yc+35, text = "0",size=14)
 Q3MinText = GaugeCluster.text(Q3xc-30 , Q3yc+55, text = Q3Min,size=10)
 Q3MaxText = GaugeCluster.text(Q3xc+50, Q3yc-10, text = Q3Max,size=10)
 Q3Max1 = GaugeCluster.line(Q3xc, Q3yc,Q3xc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q3yc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="red", width=4)
@@ -255,21 +251,21 @@ for i in range(1, 10):
     Q3Dashes = GaugeCluster.line(Q3xc, Q3yc,Q3xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q3yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="black", width=2)
 for i in range(0, 11):
     Q3DashCover = GaugeCluster.line(Q3xc, Q3yc,Q3xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q3MaxRadius), Q3yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q3MaxRadius), color="white", width=5)
-
 #Q4 Gauge
 Q4xc = radius*3
 Q4yc = radius*3
 Q4x = radius*3
 Q4y = radius*2
-
-Q4TargetP = 0
+#///Q4 VARIABLES////
 Q4Min = 30
 Q4Max = 70
-Q4Title = "Temp"
-
+Q4Title = "O2"
+Q4TitleSize = 13
+#///////////////////
+Q4TargetP = 0
 Q4Needle = GaugeCluster.line(Q4xc, Q4yc, Q4x, Q4y, color="red", width=5)
-Q4MainText = GaugeCluster.text(Q4xc , Q4yc+10, text = Q4Title,size=15)
-Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = "0",size=15)
+Q4MainText = GaugeCluster.text(Q4xc , Q4yc+10, text = Q4Title,size=Q4TitleSize)
+Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = "0",size=14)
 Q4MinText = GaugeCluster.text(Q4xc-30 , Q4yc+55, text = Q4Min,size=10)
 Q4MaxText = GaugeCluster.text(Q4xc+50, Q4yc-10, text = Q4Max,size=10)
 Q4Max1 = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q4yc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="red", width=4)
@@ -284,29 +280,26 @@ WB1x1 = 0
 WB1y1 = 300
 WB1x2 = 100
 WB1y2 = 400
-WB1Color = "black"
-WB1Text = GaugeCluster.text(WB1x1+15, WB1y1+40, text = "FUCK",size=15, color="black")
+WB1Color = "red"
 WB1 = GaugeCluster.rectangle(WB1x1, WB1y1, WB1x2, WB1y2, color=WB1Color)
-
 
 WB2x1 = 100
 WB2y1 = 300
 WB2x2 = 200
 WB2y2 = 400
-WB2Color = "black"
+WB2Color = "orange"
 WB2 = GaugeCluster.rectangle(WB2x1, WB2y1, WB2x2, WB2y2, color=WB2Color)
 
 WB3x1 = 200
 WB3y1 = 300
 WB3x2 = 300
 WB3y2 = 400
-WB3Color = "black"
+WB3Color = "red"
 WB3 = GaugeCluster.rectangle(WB3x1, WB3y1, WB3x2, WB3y2, color=WB3Color)
 
 GaugeCluster.repeat(250, Track_Data)
-
 OBCMode= PushButton(TRACK, command=OBCMode_Pressed, text="OBC", width="20")
 OBCMode.bg = "white"
 
-TRACK.display()
 OBC.display()
+TRACK.display()
