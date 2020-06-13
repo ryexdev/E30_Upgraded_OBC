@@ -34,4 +34,4 @@ Install Font;_
 * Right click > Create new > Folder, and type “.fonts”
 * Paste the files into the “.fonts” folder you just created
 
-
+Menu -> Preferences -> Localisation -> Set your timezone
