@@ -13,6 +13,7 @@ UDP_IP = "255.255.255.255"
 UDP_PORT = 8888
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((UDP_IP, UDP_PORT))
+sock.setblocking(0)
 
 MainTextMode = 'hour'
 
@@ -82,11 +83,11 @@ def Track_Data():
     global Q1Max
     global Q1MainReading
     global sock
-    data, addr = sock.recvfrom(256)
-    Q1TargetP = float(data.decode("utf-8"))
-    #if Q1TargetP > 10000 or Q1TargetP < 0 or Q1TargetP.isdigit() != True:
-      #Q1TargetP = 0
-    Q1TargetP = 1
+    try:
+      data, addr = sock.recvfrom(256)
+      Q1TargetP = float(data.decode("utf-8"))
+    except:
+      Q1TargetP = 0
     #Q1TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q1Needle)
     GaugeCluster.delete(Q1MainReading)
