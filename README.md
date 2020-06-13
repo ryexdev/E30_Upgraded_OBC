@@ -24,3 +24,11 @@ Install Guizero for PY Graphics program
 ```
 pip3 install guizero
 ```
+
+Menu -> Preference -> Appearance Settings
+
+Install Font;
+https://www.1001fonts.com/digital-7-font.html
+
+
+
