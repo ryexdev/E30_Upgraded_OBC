@@ -4,7 +4,15 @@ from guizero import App, Text, PushButton, Drawing, Window, Picture
 import os
 import time
 import math
+import socket
 from random import randint
+
+import socket
+
+UDP_IP = "255.255.255.255"
+UDP_PORT = 8888
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
 
 MainTextMode = 'hour'
 
@@ -64,12 +72,7 @@ def OBC_Data():
       
 def Track_Data():
     global radius
-    """
-    if Q1TargetP <= 100:
-        Q1TargetP = Q1TargetP + randint(1,5)
-    else:
-        Q1TargetP = 0
-    """
+	
     #Q1 Gauge
     global Q1xc
     global Q1yc
@@ -78,7 +81,13 @@ def Track_Data():
     global Q1Min
     global Q1Max
     global Q1MainReading
-    Q1TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
+    global sock
+    data, addr = sock.recvfrom(256)
+    Q1TargetP = float(data.decode("utf-8"))
+    #if Q1TargetP > 10000 or Q1TargetP < 0 or Q1TargetP.isdigit() != True:
+      #Q1TargetP = 0
+    Q1TargetP = 1
+    #Q1TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q1Needle)
     GaugeCluster.delete(Q1MainReading)
     Q1Needle = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), color="black", width=5)
