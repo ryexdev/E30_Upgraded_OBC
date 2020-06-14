@@ -134,7 +134,6 @@ def Track_Data():
     GaugeCluster.delete(Q4MainReading)
     Q4Needle = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), Q4yc + (math.sin((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = Q4TargetP,size=15)
-
 #******************************************
 #----------------UDP CONTROL----------------
 #******************************************
@@ -289,29 +288,32 @@ for i in range(1, 10):
     Q4Dashes = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q4yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="black", width=2)
 for i in range(0, 11):
     Q4DashCover = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), Q4yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), color="white", width=5)
-#Warning Bars
+#Warning Bar 1
 WB1x1 = 0
 WB1y1 = 300
 WB1x2 = 100
 WB1y2 = 400
-WB1Color = "red"
-WB1 = GaugeCluster.rectangle(WB1x1, WB1y1, WB1x2, WB1y2, color=WB1Color)
-
+WB1Color = "black"
+WB1 = GaugeCluster.rectangle(WB1x1, WB1y1, WB1x2, WB1y2, color="white")
+WB1 = GaugeCluster.rectangle(WB1x1+5, WB1y1+5, WB1x2-5, WB1y2-5, color=WB1Color)
+#Warning Bar 2
 WB2x1 = 100
 WB2y1 = 300
 WB2x2 = 200
 WB2y2 = 400
-WB2Color = "orange"
-WB2 = GaugeCluster.rectangle(WB2x1, WB2y1, WB2x2, WB2y2, color=WB2Color)
-
+WB2Color = "black"
+WB2 = GaugeCluster.rectangle(WB2x1, WB2y1, WB2x2, WB2y2, color="white")
+WB2 = GaugeCluster.rectangle(WB2x1+5, WB2y1+5, WB2x2-5, WB2y2-5, color=WB2Color)
+#Warning Bar 3
 WB3x1 = 200
 WB3y1 = 300
 WB3x2 = 300
 WB3y2 = 400
-WB3Color = "red"
-WB3 = GaugeCluster.rectangle(WB3x1, WB3y1, WB3x2, WB3y2, color=WB3Color)
-
+WB3Color = "black"
+WB3 = GaugeCluster.rectangle(WB3x1, WB3y1, WB3x2, WB3y2, color="white")
+WB3 = GaugeCluster.rectangle(WB3x1+5, WB3y1+5, WB3x2-5, WB3y2-5, color=WB1Color)
 GaugeCluster.repeat(250, Track_Data)
+
 OBCMode= PushButton(TRACK, command=OBCMode_Pressed, text="OBC", width="20")
 OBCMode.bg = "white"
 
