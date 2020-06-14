@@ -1,6 +1,7 @@
 # E30_Upgraded_OBC
 Run the usual updates/upgrades
 ```
+sudo apt-get update
 sudo apt update
 sudo apt upgrade
 ```
