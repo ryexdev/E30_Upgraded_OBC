@@ -40,8 +40,8 @@ Menu -> Preferences -> Localisation -> Set your timezone
 
 Edit screen blank parameter
 ```
-sudo nano /boot/cmdline.txt
+sudo apt install xscreensaver
 ```
-Add "consoleblank=0" to turn screen blanking off completely
+Menu -> Preferences -> Screensaver
 
-<b>Note</b> the kernel command line must be a single line of text.
+Disable Screen Saver
