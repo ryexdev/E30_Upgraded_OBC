@@ -38,7 +38,7 @@ Install Font;_
 Menu -> Preferences -> Localisation -> Set your timezone
 
 
-Edit screen blank parameter
+
 ```
 sudo apt install xscreensaver
 ```
