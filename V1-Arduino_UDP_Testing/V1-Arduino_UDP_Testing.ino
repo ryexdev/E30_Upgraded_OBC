@@ -42,6 +42,6 @@ void loop() {
     strcpy (ReplyBuffer, itoa( i, ReplyBuffer, 10 ));
     Udp.write(ReplyBuffer);
     Udp.endPacket();
-    delay(100);
+    delay(250);
   }
 }
