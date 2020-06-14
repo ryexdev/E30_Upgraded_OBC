@@ -42,4 +42,5 @@ Edit screen blank parameter
 sudo nano /boot/cmdline.txt
 ```
 Add "consoleblank=0" to turn screen blanking off completely
+
 <b>Note</b> the kernel command line must be a single line of text.
