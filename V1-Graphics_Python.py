@@ -72,7 +72,7 @@ def OBC_Data():
       OBCMainText.value = 'Memo'
       
 def Track_Data():
-    global radius
+    global radius  
 	
     #Q1 Gauge
     global Q1xc
@@ -82,18 +82,19 @@ def Track_Data():
     global Q1Min
     global Q1Max
     global Q1MainReading
-    global sock
+    global Q1ErrorCount
     try:
       data, addr = sock.recvfrom(256)
       Q1TargetP = float(data.decode("utf-8"))
+      Q1ErrorCount = 0
     except:
+      Q1ErrorCount += 1
+    if Q1ErrorCount > 10:
       Q1TargetP = 0
-    #Q1TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q1Needle)
     GaugeCluster.delete(Q1MainReading)
     Q1Needle = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = Q1TargetP,size=15)
-    
     #Q2 Gauge
     global Q2xc
     global Q2yc
@@ -107,7 +108,6 @@ def Track_Data():
     GaugeCluster.delete(Q2MainReading)
     Q2Needle = GaugeCluster.line(Q2xc, Q2yc,Q2xc + (math.cos((((Q2TargetP - Q2Min) * ((3.141592 * 1.25) - 0)) / (Q2Max - Q2Min))-(3.141592 / .75)) * radius), Q2yc + (math.sin((((Q2TargetP - Q2Min) * ((3.141592 * 1.25) - 0)) / (Q2Max - Q2Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q2MainReading = GaugeCluster.text(Q2xc , Q2yc+35, text = Q2TargetP,size=15)
-    
     #Q3Gauge
     global Q3xc
     global Q3yc
@@ -121,7 +121,6 @@ def Track_Data():
     GaugeCluster.delete(Q3MainReading)
     Q3Needle = GaugeCluster.line(Q3xc, Q3yc,Q3xc + (math.cos((((Q3TargetP - Q3Min) * ((3.141592 * 1.25) - 0)) / (Q3Max - Q3Min))-(3.141592 / .75)) * radius), Q3yc + (math.sin((((Q3TargetP - Q3Min) * ((3.141592 * 1.25) - 0)) / (Q3Max - Q3Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q3MainReading = GaugeCluster.text(Q3xc , Q3yc+35, text = Q3TargetP,size=15)
-    
     #Q4Gauge
     global Q4xc
     global Q4yc
@@ -135,6 +134,10 @@ def Track_Data():
     GaugeCluster.delete(Q4MainReading)
     Q4Needle = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), Q4yc + (math.sin((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = Q4TargetP,size=15)
+
+#******************************************
+#----------------UDP CONTROL----------------
+#******************************************
 
 #******************************************
 #----------------OBC MENU----------------
@@ -204,6 +207,7 @@ Q1TargetP = 0
 Q1Needle = GaugeCluster.line(Q1xc, Q1yc, Q1x, Q1y, color="red", width=5)
 Q1MainText = GaugeCluster.text(Q1xc , Q1yc+10, text = Q1Title,size=Q1TitleSize)
 Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = "0",size=14)
+Q1ErrorCount = 0
 Q1MinText = GaugeCluster.text(Q1xc-30 , Q1yc+55, text = Q1Min,size=10)
 Q1MaxText = GaugeCluster.text(Q1xc+50, Q1yc-10, text = Q1Max,size=10)
 Q1Max1 = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * radius), color="red", width=4)
