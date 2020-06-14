@@ -73,7 +73,7 @@ def OBC_Data():
       
 def Track_Data():
     global radius  
-	
+	#float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     #Q1 Gauge
     global Q1xc
     global Q1yc
@@ -95,7 +95,7 @@ def Track_Data():
     GaugeCluster.delete(Q1MainReading)
     Q1Needle = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = Q1TargetP,size=15)
-    #Q2 Gauge
+        #Q2 Gauge
     global Q2xc
     global Q2yc
     global Q2Needle
@@ -103,12 +103,23 @@ def Track_Data():
     global Q2Min
     global Q2Max
     global Q2MainReading
+    global Q2ErrorCount
+    """
+    try:
+      data, addr = sock.recvfrom(256)
+      Q2TargetP = float(data.decode("utf-8"))
+      Q2ErrorCount = 0
+    except:
+      Q2ErrorCount += 1
+    if Q2ErrorCount > 10:
+      Q2TargetP = 0
+    """
     Q2TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q2Needle)
     GaugeCluster.delete(Q2MainReading)
     Q2Needle = GaugeCluster.line(Q2xc, Q2yc,Q2xc + (math.cos((((Q2TargetP - Q2Min) * ((3.141592 * 1.25) - 0)) / (Q2Max - Q2Min))-(3.141592 / .75)) * radius), Q2yc + (math.sin((((Q2TargetP - Q2Min) * ((3.141592 * 1.25) - 0)) / (Q2Max - Q2Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q2MainReading = GaugeCluster.text(Q2xc , Q2yc+35, text = Q2TargetP,size=15)
-    #Q3Gauge
+    #Q3 Gauge
     global Q3xc
     global Q3yc
     global Q3Needle
@@ -116,12 +127,23 @@ def Track_Data():
     global Q3Min
     global Q3Max
     global Q3MainReading
+    global Q3ErrorCount
+    """
+    try:
+      data, addr = sock.recvfrom(256)
+      Q3TargetP = float(data.decode("utf-8"))
+      Q3ErrorCount = 0
+    except:
+      Q3ErrorCount += 1
+    if Q3ErrorCount > 10:
+      Q3TargetP = 0
+    """
     Q3TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q3Needle)
     GaugeCluster.delete(Q3MainReading)
     Q3Needle = GaugeCluster.line(Q3xc, Q3yc,Q3xc + (math.cos((((Q3TargetP - Q3Min) * ((3.141592 * 1.25) - 0)) / (Q3Max - Q3Min))-(3.141592 / .75)) * radius), Q3yc + (math.sin((((Q3TargetP - Q3Min) * ((3.141592 * 1.25) - 0)) / (Q3Max - Q3Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q3MainReading = GaugeCluster.text(Q3xc , Q3yc+35, text = Q3TargetP,size=15)
-    #Q4Gauge
+    #Q4 Gauge
     global Q4xc
     global Q4yc
     global Q4Needle
@@ -129,6 +151,17 @@ def Track_Data():
     global Q4Min
     global Q4Max
     global Q4MainReading
+    global Q4ErrorCount
+    """
+    try:
+      data, addr = sock.recvfrom(256)
+      Q4TargetP = float(data.decode("utf-8"))
+      Q4ErrorCount = 0
+    except:
+      Q4ErrorCount += 1
+    if Q4ErrorCount > 10:
+      Q4TargetP = 0
+    """
     Q4TargetP = float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     GaugeCluster.delete(Q4Needle)
     GaugeCluster.delete(Q4MainReading)
