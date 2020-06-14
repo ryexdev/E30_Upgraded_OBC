@@ -14,8 +14,6 @@ char  ReplyBuffer[255] = "50";
 
 WiFiUDP Udp;
 
-
-
 void setup() {
   pinMode(D2, OUTPUT);
   digitalWrite(D2, LOW);
@@ -36,13 +34,14 @@ void setup() {
 }
 
 void loop() {
-  Udp.beginPacket("255.255.255.255", 8888);
   int x = 1;
   for (int i = 0; i > -1; i = i + x) {
-    if (i == 100) x = -1;
+    Udp.beginPacket("255.255.255.255", 8888);
+    if (i == 100)
+      x = -1;
     strcpy (ReplyBuffer, itoa( i, ReplyBuffer, 10 ));
     Udp.write(ReplyBuffer);
     Udp.endPacket();
-    delay(250);
+    delay(100);
   }
 }
