@@ -1,6 +1,8 @@
 from datetime import datetime
 from guizero import App, Text, PushButton, Drawing, Window, Picture
 
+from subprocess import call
+
 import os
 import time
 import math
@@ -42,6 +44,7 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
+   call("sudo shutdown -h now", shell = True)
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -90,7 +93,7 @@ def Track_Data():
     except:
       Q1ErrorCount += 1
     if Q1ErrorCount > 10:
-      Q1TargetP = 0
+      Q1TargetP = 0.0
     GaugeCluster.delete(Q1Needle)
     GaugeCluster.delete(Q1MainReading)
     Q1Needle = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), color="black", width=5)
@@ -230,12 +233,12 @@ Q1yc = radius
 Q1x = radius
 Q1y = 0
 #///Q1 VARIABLES////
-Q1Min = 0
-Q1Max = 100
-Q1Title = "O Temp"
-Q1TitleSize = 13
+Q1Min = 32
+Q1Max = 110
+Q1Title = "Cabin Temp"
+Q1TitleSize = 9
 #///////////////////
-Q1TargetP = 0
+Q1TargetP = 0.0
 Q1Needle = GaugeCluster.line(Q1xc, Q1yc, Q1x, Q1y, color="red", width=5)
 Q1MainText = GaugeCluster.text(Q1xc , Q1yc+10, text = Q1Title,size=Q1TitleSize)
 Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = "0",size=14)

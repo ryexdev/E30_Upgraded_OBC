@@ -20,12 +20,12 @@ Adafruit_BME280 bme;
 unsigned int localPort = 8888;
 char  ReplyBuffer[255] = "50";
 
-const int TemperatureNumReadings = 120;
+const int TemperatureNumReadings = 60;
 int TempTemperatureNumReadings = 0;
 int TemperatureReadings[TemperatureNumReadings];
 int TemperatureReadIndex = 0;
-int TemperatureTotal = 0;
-int TemperatureAverage = 0;
+float TemperatureTotal = 0;
+float TemperatureAverage = 0;
 
 WiFiUDP Udp;
 
@@ -61,6 +61,7 @@ void loop() {
   //--------------------------- DATA LOAD --------------------------------
   TemperatureTotal = TemperatureTotal - TemperatureReadings[TemperatureReadIndex];
   TemperatureReadings[TemperatureReadIndex] = ((((bme.readTemperature()) * 1.8) + 32));
+  //TemperatureReadings[TemperatureReadIndex] = bme.readTemperature();
   TemperatureTotal = TemperatureTotal + TemperatureReadings[TemperatureReadIndex];
   TemperatureReadIndex = TemperatureReadIndex + 1;
   if (TemperatureReadIndex >= TemperatureNumReadings) {
@@ -72,6 +73,7 @@ void loop() {
   } else {
     TemperatureAverage = TemperatureTotal / TemperatureNumReadings;
   }
+  Serial.println(TemperatureAverage);
   //----------------------------------------------------------------------
   strcpy (ReplyBuffer, itoa(TemperatureAverage, ReplyBuffer, 10));
   Udp.write(ReplyBuffer);
