@@ -235,8 +235,8 @@ Q1y = 0
 #///Q1 VARIABLES////
 Q1Min = 32
 Q1Max = 110
-Q1Title = "Cabin Temp"
-Q1TitleSize = 9
+Q1Title = "Cab *F"
+Q1TitleSize = 13
 #///////////////////
 Q1TargetP = 0.0
 Q1Needle = GaugeCluster.line(Q1xc, Q1yc, Q1x, Q1y, color="red", width=5)

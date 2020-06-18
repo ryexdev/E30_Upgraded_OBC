@@ -73,9 +73,9 @@ void loop() {
   } else {
     TemperatureAverage = TemperatureTotal / TemperatureNumReadings;
   }
-  Serial.println(TemperatureAverage);
+  Serial.println(TemperatureAverage*.8);
   //----------------------------------------------------------------------
-  strcpy (ReplyBuffer, itoa(TemperatureAverage, ReplyBuffer, 10));
+  strcpy (ReplyBuffer, itoa(TemperatureAverage*.8, ReplyBuffer, 10));
   Udp.write(ReplyBuffer);
   Udp.endPacket();
   delay(250);
