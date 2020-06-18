@@ -1,23 +1,42 @@
-from datetime import datetime
-from guizero import App, Text, PushButton, Drawing, Window, Picture
-
-from subprocess import call
-
 import os
+from subprocess import call
 import time
+from datetime import datetime
 import math
 import socket
 from random import randint
-
+#UDP Comms
 import socket
-
+#GPS Comms
+from gps import *
+from time import *
+import threading
+#Drawing
+from guizero import App, Text, PushButton, Drawing, Window, Picture
+ 
+#UDP Variables
 UDP_IP = "255.255.255.255"
 UDP_PORT = 8888
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
+#Declare GPS
+gpsd = None
 
-MainTextMode = 'hour'
+class GpsPoller(threading.Thread):
+  def __init__(self):
+    threading.Thread.__init__(self)
+    global gpsd
+    gpsd = gps(mode=WATCH_ENABLE)
+    self.current_value = None
+    self.running = True
+ 
+  def run(self):
+    global gpsd
+    while gpsp.running:
+      gpsd.next()
+
+MainTextMode = ''
 
 def hdat_Pressed():
    global MainTextMode
@@ -49,30 +68,37 @@ def Memo_Pressed():
 def TrackMode_Pressed():
    OBC.hide()
    TRACK.show()
-   TRACK.focus()
    
+def GPSMode_Pressed():
+    TRACK.hide()
+    GPS.show()
+    
 def OBCMode_Pressed():
    global MainTextMode
-   MainTextMode = ''
+   MainTextMode = 'hour'
    TRACK.hide()
+   GPS.hide()
    OBC.show()
-   OBC.focus()
+
 
 def OBC_Data():
+    global MainTextMode
     if MainTextMode == '':
-      OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
+        TRACK.hide()
+        GPS.hide()
+        MainTextMode = 'hour'
     if MainTextMode == 'hdat':
-      OBCMainText.value = 'h/Dat'
+        OBCMainText.value = 'h/Dat'
     if MainTextMode == 'mindat':
-      OBCMainText.value = 'min/Dat'
+        OBCMainText.value = 'min/Dat'
     if MainTextMode == 'hour':
-      OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
+        OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
-      OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
+        OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
     if MainTextMode == 'temp':
-      OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
+        OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
     if MainTextMode == 'memo':
-      OBCMainText.value = 'Memo'
+        OBCMainText.value = 'Memo'
       
 def Track_Data():
     global radius  
@@ -98,7 +124,7 @@ def Track_Data():
     GaugeCluster.delete(Q1MainReading)
     Q1Needle = GaugeCluster.line(Q1xc, Q1yc,Q1xc + (math.cos((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), Q1yc + (math.sin((((Q1TargetP - Q1Min) * ((3.141592 * 1.25) - 0)) / (Q1Max - Q1Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q1MainReading = GaugeCluster.text(Q1xc , Q1yc+35, text = Q1TargetP,size=15)
-        #Q2 Gauge
+    #Q2 Gauge
     global Q2xc
     global Q2yc
     global Q2Needle
@@ -170,9 +196,27 @@ def Track_Data():
     GaugeCluster.delete(Q4MainReading)
     Q4Needle = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), Q4yc + (math.sin((((Q4TargetP - Q4Min) * ((3.141592 * 1.25) - 0)) / (Q4Max - Q4Min))-(3.141592 / .75)) * radius), color="black", width=5)
     Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+35, text = Q4TargetP,size=15)
-#******************************************
-#----------------UDP CONTROL----------------
-#******************************************
+    
+def GPS_Data():
+    global GPSradius
+    #GPSspeed Gauge
+    global GPSspeedxc
+    global GPSspeedyc
+    global GPSspeedNeedle
+    global GPSspeedTargetP
+    global GPSspeedMin
+    global GPSspeedMax
+    global GPSspeedMainReading
+    global gpsp
+    global gpsd
+    GPSspeed = round((gpsd.fix.speed*2.237),2)
+    if math.isnan(GPSspeed) or GPSspeed < 1:
+        GPSspeed = 0
+    GPSspeedTargetP = GPSspeed
+    GPSGaugeCluster.delete(GPSspeedNeedle)
+    GPSGaugeCluster.delete(GPSspeedMainReading)
+    GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
+    GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
 
 #******************************************
 #----------------OBC MENU----------------
@@ -211,7 +255,6 @@ TrackMode.bg = "white"
 #TRACK = App(title="TRACK")
 TRACK = Window(OBC, title = "TRACK")
 TRACK.bg = "BLACK"
-
 #Gauge Face Cluster
 DrawingWidth = 300
 DrawingHeight = 400
@@ -350,8 +393,56 @@ WB3 = GaugeCluster.rectangle(WB3x1, WB3y1, WB3x2, WB3y2, color="white")
 WB3 = GaugeCluster.rectangle(WB3x1+5, WB3y1+5, WB3x2-5, WB3y2-5, color=WB1Color)
 GaugeCluster.repeat(250, Track_Data)
 
-OBCMode= PushButton(TRACK, command=OBCMode_Pressed, text="OBC", width="20")
+GPSMode= PushButton(TRACK, command=GPSMode_Pressed, text="OBC", width="20")
+GPSMode.bg = "white"
+#******************************************
+#----------------GPS MENU----------------
+#******************************************
+GPS = Window(OBC, title = "GPS")
+GPS.bg = "BLACK"
+#Gauge Face Cluster
+DrawingWidth = 300
+DrawingHeight = 300
+NumberOfGauges = 2
+GaugeWidth = DrawingWidth
+GaugeHeight = 300
+GPSGaugeCluster = Drawing(GPS, width=DrawingWidth, height=DrawingHeight)
+GPSGaugeCluster.oval(0, 0, GaugeWidth/(NumberOfGauges/2), GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
+#Gauge Needles
+GPSradius = GaugeWidth/NumberOfGauges
+#GPSspeed Gauge
+GPSspeedxc = GPSradius
+GPSspeedyc = GPSradius
+GPSspeedx = GPSradius
+GPSspeedy = 0
+#///GPSspeed VARIABLES////
+GPSspeedMin = 0
+GPSspeedMax = 140
+GPSspeedTitle = "GPS MPH"
+GPSspeedTitleSize = 20
+#///////////////////
+GPSspeedTargetP = 0.0
+GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc, GPSspeedx, GPSspeedy, color="red", width=5)
+GPSspeedMainText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+10, text = GPSspeedTitle,size=GPSspeedTitleSize)
+GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = "0",size=20)
+GPSspeedMinText = GPSGaugeCluster.text(GPSspeedxc-50 , GPSspeedyc+105, text = GPSspeedMin,size=14)
+GPSspeedMaxText = GPSGaugeCluster.text(GPSspeedxc+100, GPSspeedyc-20, text = GPSspeedMax,size=14)
+GPSspeedMax1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="red", width=4)
+GPSspeedMin1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="blue", width=4)
+GPSspeedMaxRadius = GaugeWidth/3
+for i in range(1, 10):
+    GPSspeedDashes = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="black", width=2)
+for i in range(0, 11):
+    GPSspeedDashCover = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), color="white", width=5)
+#GPS Threading
+    gpsp = GpsPoller()
+gpsp.start()
+spacer = Text(GPS, text="")
+spacer = Text(GPS, text="")
+spacer = Text(GPS, text="")
+spacer = Text(GPS, text="")
+OBCMode= PushButton(GPS, command=OBCMode_Pressed, text="OBC", width="20")
 OBCMode.bg = "white"
+GPSGaugeCluster.repeat(250, GPS_Data)
 
 OBC.display()
-TRACK.display()
