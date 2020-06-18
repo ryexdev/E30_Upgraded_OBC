@@ -52,3 +52,12 @@ GPS
 sudo apt-get install python gpsd gpsd-clients
 ```
 Test using ```cgps```, should output info on command line
+
+Disable Cursor
+```
+sudo apt install unclutter
+```
+Reboot
+```
+unclutter -idle 0
+```
