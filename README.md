@@ -54,3 +54,9 @@ http://digistump.com/package_digistump_index.json
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 https://arduino.esp8266.com/stable/package_esp8266com_index.json
 ```
+
+GPS
+```
+sudo apt-get install python gpsd gpsd-clients
+```
+Test using ```cgps```, should output info on command line
