@@ -4,6 +4,7 @@ Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi
 sudo apt-get update
 sudo apt update
 sudo apt upgrade
+sudo apt-get update
 ```
 Install PIP
 ```
