@@ -1,5 +1,5 @@
 # E30_Upgraded_OBC
-Run the usual updates/upgrades
+Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
 sudo apt-get update
 sudo apt update
