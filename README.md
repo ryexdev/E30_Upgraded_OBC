@@ -51,7 +51,7 @@ Disable Screen Saver
 GPS
 ```
 sudo apt-get install python gpsd gpsd-clients
-pip install gps
+pip3 install gps
 ```
 Test using ```cgps```, should output info on command line
 
