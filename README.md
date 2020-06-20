@@ -22,6 +22,20 @@ chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./MHS35-show 90
 ```
+NO IDEA WHICH ONE WORKS
+```
+cd ~/
+sudo git clone https://github.com/tianyoujian/MZDPI.git
+cd MZDPI/vga
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
+
+sudo chmod +x mzp280v01br-autoinstall-online
+sudo ./mzp280v01br-autoinstall-online
+
+
+sudo chmod +x mzdpi-vga-autoinstall-offline 
+sudo ./mzdpi-vga-autoinstall-offline 
 ```
 cd ~/
 git clone https://github.com/tianyoujian/MZDPI.git
