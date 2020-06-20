@@ -22,7 +22,6 @@ chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./MHS35-show 90
 ```
-NO IDEA WHICH ONE WORKS
 https://raspberrypiwiki.com/index.php?title=2.8_inch_Touch_Screen_for_Pi_zero&mobileaction=toggle_view_mobile
 ```
 cd ~/
@@ -35,6 +34,8 @@ Change display_rotate as needed. 2 or 4 works for vertical.
 ```
 sudo chmod +x mzp280v01br-autoinstall-online
 sudo ./mzp280v01br-autoinstall-online
+DISPLAY=:0 xinput set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 1 0
+DISPLAY=:0 xinput set-prop 'ADS7846 Touchscreen' 'Evdev Axes Swap' 1
 ```
 
 
