@@ -47,7 +47,7 @@ Change these options
 
 Install Guizero for PY Graphics program
 ```
-pip3 install guizero
+sudo pip3 install guizero
 ```
 
 Menu -> Preference -> Appearance Settings
@@ -74,7 +74,7 @@ Disable Screen Saver
 GPS
 ```
 sudo apt-get install python gpsd gpsd-clients
-pip3 install gps
+sudo pip3 install gps
 ```
 Test using ```cgps```, should output info on command line
 
