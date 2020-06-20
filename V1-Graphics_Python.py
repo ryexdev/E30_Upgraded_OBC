@@ -5,7 +5,7 @@ from datetime import datetime
 import math
 import socket
 from random import randint
-#UDP Comms
+#UDP 
 import socket
 #GPS Comms
 from gps import *
@@ -102,7 +102,7 @@ def OBC_Data():
       
 def Track_Data():
     global radius  
-	#float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
+    #float((((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip()).replace("'C",""))
     #Q1 Gauge
     global Q1xc
     global Q1yc
