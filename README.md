@@ -28,23 +28,16 @@ https://raspberrypiwiki.com/index.php?title=2.8_inch_Touch_Screen_for_Pi_zero&mo
 cd ~/
 sudo git clone https://github.com/tianyoujian/MZDPI.git
 cd MZDPI/vga
-sudo chmod +x mzdpi-vga-autoinstall-online
-sudo ./mzdpi-vga-autoinstall-online
-
+sudo nano mzp280v01br-autoinstall-online
+```
+Change display_rotate as needed. 2 or 4 works for vertical.
+2 puts the USb jacks to stage left. 4 puts them to stage right.
+```
 sudo chmod +x mzp280v01br-autoinstall-online
 sudo ./mzp280v01br-autoinstall-online
+```
 
 
-sudo chmod +x mzdpi-vga-autoinstall-offline 
-sudo ./mzdpi-vga-autoinstall-offline 
-```
-cd ~/
-git clone https://github.com/tianyoujian/MZDPI.git
-cd MZDPI/vga
-sudo chmod +x mzdpi-vga-autoinstall-online
-sudo ./mzdpi-vga-autoinstall-online
-sudo reboot
-```
 Install Guizero for PY Graphics program
 ```
 pip3 install guizero
