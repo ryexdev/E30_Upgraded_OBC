@@ -22,6 +22,14 @@ chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./MHS35-show 90
 ```
+```
+cd ~/
+git clone https://github.com/tianyoujian/MZDPI.git
+cd MZDPI/vga
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
+sudo reboot
+```
 Install Guizero for PY Graphics program
 ```
 pip3 install guizero
