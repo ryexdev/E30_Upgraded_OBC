@@ -23,6 +23,7 @@ cd LCD-show/
 sudo ./MHS35-show 90
 ```
 NO IDEA WHICH ONE WORKS
+https://raspberrypiwiki.com/index.php?title=2.8_inch_Touch_Screen_for_Pi_zero&mobileaction=toggle_view_mobile
 ```
 cd ~/
 sudo git clone https://github.com/tianyoujian/MZDPI.git
