@@ -34,8 +34,14 @@ Change display_rotate as needed. 2 or 4 works for vertical.
 ```
 sudo chmod +x mzp280v01br-autoinstall-online
 sudo ./mzp280v01br-autoinstall-online
-DISPLAY=:0 xinput set-prop 'ADS7846 Touchscreen' 'Evdev Axis Inversion' 1 0
-DISPLAY=:0 xinput set-prop 'ADS7846 Touchscreen' 'Evdev Axes Swap' 1
+reboot
+sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
+```
+Change these options
+```
+        Option  "SwapAxes"      "1"
+        Option "InvertX"        "True"
+
 ```
 
 
