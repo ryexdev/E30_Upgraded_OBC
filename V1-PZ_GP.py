@@ -232,7 +232,6 @@ OBC.full_screen = True
 spacer = Text(OBC, text = "                                                                                               ", font="digital-7", height="1", size=9, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText = Text(OBC, text = "Loading", font="digital-7", height="2", size=69, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
