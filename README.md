@@ -90,4 +90,5 @@ unclutter -idle 0
 ```
 DISPLAY=:0 python3 V1-PZ_GP.py
 sudo killall python3
+sudo nano ./.config/lxsession/LXDE-pi/autostart
 ```
