@@ -22,6 +22,7 @@ sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
 #Declare GPS
 gpsd = None
+UpdateTimeCycle = 1200 
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -213,6 +214,7 @@ def GPS_Data():
     global GPSspeedMainReading
     global gpsp
     global gpsd
+    global UpdateTimeCycle
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
@@ -221,18 +223,20 @@ def GPS_Data():
     GPSGaugeCluster.delete(GPSspeedMainReading)
     GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
-
-#******************************************
-#----------------OBC MENU----------------
-#******************************************
+    if UpdateTimeCycle >= 1200:
+        gpsutc = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
+        os.system('sudo date -u --set="%s"' % gpsutc)
+        UpdateTimeCycle = 0
+    else:
+        UpdateTimeCycle += 1
+#******************************************************************************************************************************
+#----------------OBC MENU----------------************************************************************************************
+#******************************************************************************************************************************
 OBCSpacing = 1
 OBC = App(title="OBC", width=480, height=600, layout="grid")
 OBC.bg = "#5E0000"
 OBC.full_screen = True
-spacer = Text(OBC, text = "                                                                                               ", font="digital-7", height="1", size=9, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCMainText = Text(OBC, text = "Loading", font="digital-7", height="2", size=69, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCMainText = Text(OBC, text = "Loading", font="digital-7", width=11, height="2", size=69, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
@@ -240,40 +244,32 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat              ", align="left", width="fill", grid=[0,OBCSpacing])
+OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "white"
-OBCmindat = PushButton(OBC, command=mindat_Pressed, text="           min/dat", align="right", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour              ", align="left", width="fill", grid=[0,OBCSpacing])
+OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChour.bg = "white"
-OBCdate = PushButton(OBC, command=Date_Pressed, text="              Date", align="right", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCdate.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp             ", align="left", width="fill", grid=[0,OBCSpacing])
+OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "white"
-OBCmemo = PushButton(OBC, command=Memo_Pressed, text="             Memo", align="right", width="fill", grid=[0,OBCSpacing])
+OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Memo", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "white"
-TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", width="20", grid=[0,OBCSpacing])
+TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
-#******************************************
-#----------------TRACK MENU----------------
-#******************************************
+#******************************************************************************************************************************
+#----------------TRACK MENU----------------************************************************************************************
+#******************************************************************************************************************************
 #TRACK = App(title="TRACK")
 TRACK = Window(OBC, title = "TRACK")
 TRACK.bg = "BLACK"
 TRACK.full_screen = True
 #Gauge Face Cluster
 DrawingWidth = 480
-DrawingHeight = 600
+DrawingHeight = 480
 NumberOfGauges = 4
 GaugeWidth = DrawingWidth
 GaugeHeight = 480
@@ -394,12 +390,15 @@ for i in range(0, 11):
     Q4DashCover = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), Q4yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), color="white", width=5)
 
 GaugeCluster.repeat(250, Track_Data)
-
-GPSMode= PushButton(TRACK, command=GPSMode_Pressed, text="GPS", width="40")
+spacer = Text(TRACK, text="",)
+spacer = Text(TRACK, text="",)
+spacer = Text(TRACK, text="",)
+spacer = Text(TRACK, text="",)
+GPSMode= PushButton(TRACK, command=GPSMode_Pressed, text="GPS", width=50, height=4)
 GPSMode.bg = "white"
-#******************************************
-#----------------GPS MENU----------------
-#******************************************
+#******************************************************************************************************************************
+#----------------GPS MENU----------------************************************************************************************
+#******************************************************************************************************************************
 GPS = Window(OBC, title = "GPS")
 GPS.bg = "BLACK"
 GPS.full_screen = True
@@ -444,8 +443,7 @@ spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
-spacer = Text(GPS, text="")
-OBCMode= PushButton(GPS, command=OBCMode_Pressed, text="OBC", width="40")
+OBCMode= PushButton(GPS, command=OBCMode_Pressed, text="OBC", width=50, height=4)
 OBCMode.bg = "white"
 GPSGaugeCluster.repeat(250, GPS_Data)
 
