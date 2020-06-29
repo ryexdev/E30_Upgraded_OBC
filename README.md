@@ -30,7 +30,7 @@ cd MZDPI/vga
 sudo nano mzp280v01br-autoinstall-online
 ```
 Change display_rotate as needed. 2 or 4 works for vertical.
-2 puts the USb jacks to stage left. 4 puts them to stage right.
+We are using "4".
 ```
 sudo chmod +x mzp280v01br-autoinstall-online
 sudo ./mzp280v01br-autoinstall-online
@@ -39,9 +39,14 @@ sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
 Change these options
 ```
+Section "InputClass"
+        Identifier      "calibration"
+        MatchProduct    "ADS7846 Touchscreen"
+        Option  "Calibration"   "195 3895 240 3813"
         Option  "SwapAxes"      "1"
-        Option "InvertX"        "True"
-
+        Option "InvertX"        "False"
+        Option "InvertY"        "True"
+EndSection
 ```
 
 
