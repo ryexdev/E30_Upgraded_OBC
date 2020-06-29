@@ -314,9 +314,9 @@ Q2x = radius*2
 Q2y = 0
 #///Q2 VARIABLES////
 Q2CapSizes = 15
-Q2Min = 32
-Q2Max = 110
-Q2Title = "Cab *F"
+Q2Min = 0
+Q2Max = 100
+Q2Title = "Pi CPU 1"
 Q2TitleSize = 22
 Q2ReadingSize = Q2TitleSize + 5
 #///////////////////
@@ -341,9 +341,9 @@ Q3x = radius
 Q3y = 0
 #///Q3 VARIABLES////
 Q3CapSizes = 15
-Q3Min = 32
-Q3Max = 110
-Q3Title = "Cab *F"
+Q3Min = 20
+Q3Max = 80
+Q3Title = "Pi CPU 2"
 Q3TitleSize = 22
 Q3ReadingSize = Q3TitleSize + 5
 #///////////////////
@@ -368,9 +368,9 @@ Q4x = radius*3
 Q4y = radius*2
 #///Q4 VARIABLES////
 Q4CapSizes = 15
-Q4Min = 32
-Q4Max = 110
-Q4Title = "Cab *F"
+Q4Min = 40
+Q4Max = 60
+Q4Title = "Pi CPU 3"
 Q4TitleSize = 22
 Q4ReadingSize = Q4TitleSize + 5
 #///////////////////
