@@ -111,3 +111,10 @@ sudo killall python3
 sudo nano ./.config/lxsession/LXDE-pi/autostart
 @python3 /home/pi/Desktop/V1-PZ_GP.py
 ```
+
+Trouble Shooting
+```
+udo apt-get purge python3
+sudo apt update
+sudo apt-get install python3
+```
