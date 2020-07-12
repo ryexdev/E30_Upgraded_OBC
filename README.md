@@ -48,7 +48,13 @@ Section "InputClass"
         Option "InvertY"        "True"
 EndSection
 ```
+Run on startup to change blueing issue
+```
+sudo nano /etc/rc.local
 
+sudo raspi-gpio set 8 a2
+sudo raspi-gpio set 7 a2
+```
 
 Install Guizero for PY Graphics program
 ```
