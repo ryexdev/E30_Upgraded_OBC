@@ -98,6 +98,12 @@ Reboot
 unclutter -idle 0
 ```
 
+Auto Run program
+```
+sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
+@python3 /home/pi/Desktop/V1-PZ_GP.py
+```
+
 ```
 DISPLAY=:0 python3 V1-PZ_GP.py
 sudo killall python3
