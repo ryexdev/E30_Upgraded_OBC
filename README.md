@@ -122,3 +122,12 @@ udo apt-get purge python3
 sudo apt update
 sudo apt-get install python3
 ```
+
+Release IP
+```
+Open a terminal and su - to root.
+Type ifconfig to show the current IP address that you received from DHCP.
+Type dhcpcd -k to send the appropriate signals to dhcpcd.
+Now bring the interface back up by typing ifup eth0.
+Type ifconfig to show the new IP address.
+```
