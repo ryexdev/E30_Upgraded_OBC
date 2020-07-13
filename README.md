@@ -1,4 +1,6 @@
 # E30_Upgraded_OBC
+https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows
+
 Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
 sudo apt-get update
