@@ -10,11 +10,7 @@ sudo apt upgrade
 sudo apt-get update -y
 sudo apt-get upgrade -y
 ```
-Install PIP
-```
-sudo apt install python3-pip
-```
-Install keyboard for various debugging
+Install keyboard for on-screen debugging
 ```
 sudo apt install matchbox-keyboard
 ```
@@ -38,10 +34,12 @@ We are using "4".
 ```
 sudo chmod +x mzp280v01br-autoinstall-online
 sudo ./mzp280v01br-autoinstall-online
-reboot
+```
+Change screen options
+```
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
-Change these options
+Paste this as entire text file replacement
 ```
 Section "InputClass"
         Identifier      "calibration"
@@ -55,7 +53,9 @@ EndSection
 Run on startup to change blueing issue
 ```
 sudo nano /etc/rc.local
-
+```
+Place at the end of the file, before "exit 0"
+```
 sudo raspi-gpio set 8 a2
 sudo raspi-gpio set 7 a2
 ```
