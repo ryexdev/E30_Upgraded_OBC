@@ -3,12 +3,7 @@ https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows
 
 Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt update
-sudo apt upgrade
-sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo curl https://get.pimoroni.com/uptodate | bash
 ```
 Install keyboard for on-screen debugging
 ```
