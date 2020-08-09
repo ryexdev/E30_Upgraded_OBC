@@ -6,6 +6,8 @@ Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi
 sudo apt update -y
 sudo apt full-upgrade -y
 sudo apt update -y
+
+curl https://get.pimoroni.com/uptodate | bash
 ```
 Install keyboard for on-screen debugging
 ```
