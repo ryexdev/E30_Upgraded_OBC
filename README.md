@@ -14,6 +14,13 @@ sudo apt install matchbox-keyboard -y
 Install screen driver (and rotates it 90*)
 ```
 cd ~/
+git clone https://github.com/tianyoujian/MZDPI.git
+cd MZDPI/vga
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
+sudo reboot
+
+cd ~/
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
