@@ -42,8 +42,6 @@ Install Guizero for PY Graphics program
 sudo pip3 install guizero
 ```
 
-Menu -> Preference -> Appearance Settings
-
 Install Font;_
 * https://www.1001fonts.com/digital-7-font.html
 * /home/pi in the file explorer
@@ -53,15 +51,11 @@ Install Font;_
 
 Menu -> Preferences -> Localisation -> Set your timezone
 
-
-
 ```
 sudo apt install xscreensaver
 ```
 Menu -> Preferences -> Screensaver
-
 Disable Screen Saver
-
 
 GPS
 ```
