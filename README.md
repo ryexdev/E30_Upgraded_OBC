@@ -46,8 +46,7 @@ Install Font;_
 * https://www.1001fonts.com/digital-7-font.html
 * /home/pi in the file explorer
 * Create a new folder and name it “.fonts”
-* Right click > Create new > Folder, and type “.fonts”
-* Paste the files into the “.fonts” folder you just created
+* Paste the font files into the “.fonts” folder you just created
 
 Menu -> Preferences -> Localisation -> Set your timezone
 
