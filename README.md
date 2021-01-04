@@ -48,12 +48,13 @@ Install Font;_
 * Create a new folder and name it “.fonts”
 * Paste the font files into the “.fonts” folder you just created
 
-Menu -> Preferences -> Localisation -> Set your timezone
+Menu -> Preferences (or RPI Setup) -> Localisation -> Set your timezone
 
 ```
 sudo apt install xscreensaver
 ```
 Menu -> Preferences -> Screensaver
+
 Disable Screen Saver
 
 GPS
