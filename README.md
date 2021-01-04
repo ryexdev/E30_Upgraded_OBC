@@ -35,6 +35,10 @@ sudo reboot
 ```
 Change the following values
 ```
+cd MZDPI/vga
+sudo nano mzdpi-vga-autoinstall-online
+```
+```
 echo "display_rotate=4" >> /boot/tmp.txt
 ```
 ```
@@ -46,10 +50,8 @@ echo "framebuffer_width=480" >> /boot/tmp.txt
 ```
 echo "framebuffer_height=640" >> /boot/tmp.txt
 ```
-```
-cd MZDPI/vga
-sudo nano mzdpi-vga-autoinstall-online
-```
+
+
 Edit file
 ```
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
