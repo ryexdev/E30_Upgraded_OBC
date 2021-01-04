@@ -7,10 +7,6 @@ sudo apt update -y
 sudo apt full-upgrade -y
 sudo apt update -y
 ```
-Install keyboard for on-screen debugging
-```
-sudo apt install matchbox-keyboard -y
-```
 Install screen driver (and rotates it 90*)
 ```
 cd ~/
@@ -19,52 +15,28 @@ cd MZDPI/vga
 sudo chmod +x mzdpi-vga-autoinstall-online
 sudo ./mzdpi-vga-autoinstall-online
 sudo reboot
-
-cd ~/
-sudo rm -rf LCD-show
-git clone https://github.com/goodtft/LCD-show.git
-chmod -R 755 LCD-show
-cd LCD-show/
-sudo ./MHS35-show 90
 ```
-https://raspberrypiwiki.com/index.php?title=2.8_inch_Touch_Screen_for_Pi_zero&mobileaction=toggle_view_mobile
+Change display_rotate to "4"
+echo "display_rotate=4" >> /boot/tmp.txt
 ```
-cd ~/
-sudo git clone https://github.com/tianyoujian/MZDPI.git
 cd MZDPI/vga
-sudo nano mzp280v01br-autoinstall-online
+sudo nano mzdpi-vga-autoinstall-online
 ```
-Change display_rotate as needed. 2 or 4 works for vertical.
-We are using "4".
-```
-sudo chmod +x mzp280v01br-autoinstall-online
-sudo ./mzp280v01br-autoinstall-online
-```
-Change screen options
+Edit file
 ```
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
-Paste this as entire text file replacement
+Replace entire contents with this
 ```
 Section "InputClass"
         Identifier      "calibration"
         MatchProduct    "ADS7846 Touchscreen"
         Option  "Calibration"   "195 3895 240 3813"
-        Option  "SwapAxes"      "1"
+        Option  "SwapAxes"      "0"
         Option "InvertX"        "False"
         Option "InvertY"        "True"
 EndSection
 ```
-Run on startup to change blueing issue
-```
-sudo nano /etc/rc.local
-```
-Place at the end of the file, before "exit 0"
-```
-sudo raspi-gpio set 8 a2
-sudo raspi-gpio set 7 a2
-```
-
 Install Guizero for PY Graphics program
 ```
 sudo pip3 install guizero
