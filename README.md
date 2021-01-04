@@ -31,7 +31,6 @@ git clone https://github.com/tianyoujian/MZDPI.git
 cd MZDPI/vga
 sudo chmod +x mzdpi-vga-autoinstall-online
 sudo ./mzdpi-vga-autoinstall-online
-sudo reboot
 ```
 Change the following values
 ```
@@ -41,6 +40,7 @@ sudo nano mzdpi-vga-autoinstall-online
 ```
 echo "display_rotate=4" >> /boot/tmp.txt
 ```
+Change "swapxy" below to "0"
 ```
 echo "dtoverlay=ads7846,penirq=27,swapxy=0,xmin=200,xmax=3850,ymin=200,ymax=3850" >> /boot/tmp.txt
 ```
@@ -50,7 +50,13 @@ echo "framebuffer_width=480" >> /boot/tmp.txt
 ```
 echo "framebuffer_height=640" >> /boot/tmp.txt
 ```
-
+Reload your changes
+```
+cd MZDPI/vga
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
+sudo reboot
+```
 
 Edit file
 ```
