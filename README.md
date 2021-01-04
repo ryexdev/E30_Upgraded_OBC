@@ -94,15 +94,7 @@ unclutter -idle 0
 
 Auto Run program
 ```
-sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
-@python3 /home/pi/Desktop/V1-PZ_GP.py
-```
-
-```
-DISPLAY=:0 python3 V1-PZ_GP.py
-sudo killall python3
-
-sudo nano ./.config/lxsession/LXDE-pi/autostart
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 @python3 /home/pi/Desktop/V1-PZ_GP.py
 ```
 
@@ -111,6 +103,9 @@ Trouble Shooting
 sudo apt-get purge python3
 sudo apt update
 sudo apt-get install python3
+
+DISPLAY=:0 python3 V1-PZ_GP.py
+sudo killall python3
 ```
 
 Release IP
