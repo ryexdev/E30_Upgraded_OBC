@@ -91,7 +91,7 @@ sudo nano ./.config/lxsession/LXDE-pi/autostart
 
 Trouble Shooting
 ```
-udo apt-get purge python3
+sudo apt-get purge python3
 sudo apt update
 sudo apt-get install python3
 ```
