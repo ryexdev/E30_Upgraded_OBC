@@ -1,5 +1,21 @@
 # E30_Upgraded_OBC
+https://www.raspberrypi.org/software/
+
+Use "Rasberry Pi Imager"
+
 https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows
+
+Place an empty file called "SSH" into memory drive root
+Place a file with the contents below named "wpa_supplicant.conf" into memory drive root
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+  ssid="Zeke"
+  psk="beer4pass"
+}
+```
 
 Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
