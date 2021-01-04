@@ -6,6 +6,7 @@ Use "Rasberry Pi Imager"
 https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows
 
 Place an empty file called "SSH" into memory drive root
+
 Place a file with the contents below named "wpa_supplicant.conf" into memory drive root
 ```
 country=US
