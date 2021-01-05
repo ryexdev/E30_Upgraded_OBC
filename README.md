@@ -22,6 +22,8 @@ sudo apt update -y
 sudo apt full-upgrade -y
 sudo apt update -y
 ```
+
+
 Install screen driver (and rotates it 90*)
 ```
 cd ~/
@@ -71,10 +73,13 @@ Section "InputClass"
         Option "InvertY"        "True"
 EndSection
 ```
+
+
 Install Guizero for PY Graphics program
 ```
 sudo pip3 install guizero
 ```
+
 
 Install Font;_
 * https://www.1001fonts.com/digital-7-font.html
@@ -82,7 +87,9 @@ Install Font;_
 * Create a new folder and name it “.fonts”
 * Paste the font files into the “.fonts” folder you just created
 
+
 Menu -> Preferences (or RPI Setup) -> Localisation -> Set your timezone
+
 
 ```
 sudo apt install xscreensaver
@@ -90,6 +97,7 @@ sudo apt install xscreensaver
 Menu -> Preferences -> Screensaver
 
 Disable Screen Saver
+
 
 GPS
 ```
@@ -99,6 +107,7 @@ sudo apt-get install python gpsd gpsd-clients
 sudo pip3 install gps
 ```
 Test using ```cgps```, should output info on command line
+
 
 Disable Cursor
 ```
@@ -112,20 +121,29 @@ Change the last line to below
 ```
 EXTRA_OPTS="-idle 0 -display :0 -root"
 ```
+
+
 Auto Run program
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
 ```
-@python3 /home/pi/Desktop/V1-PZ_GP.py
+@python3 /home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 ```
+
 
 Trouble Shooting
 ```
 sudo apt-get purge python3
 
-DISPLAY=:0 python3 Desktop/V1-PZ_GP.py
+DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 
 sudo killall python3
+
+cd
+cd Desktop
+git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
+cd E30_Upgraded_OBC
+git remote update -usern
 ```
 
