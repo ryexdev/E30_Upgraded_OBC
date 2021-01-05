@@ -103,8 +103,8 @@ Test using ```cgps```, should output info on command line
 Disable Cursor
 ```
 sudo apt install unclutter
+sudo reboot
 ```
-Reboot
 ```
 unclutter -idle 0
 ```
