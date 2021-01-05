@@ -114,25 +114,17 @@ unclutter -idle 0
 Auto Run program
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+```
+```
 @python3 /home/pi/Desktop/V1-PZ_GP.py
 ```
 
 Trouble Shooting
 ```
 sudo apt-get purge python3
-sudo apt update
-sudo apt-get install python3
 
-DISPLAY=:0 python3 V1-PZ_GP.py
 DISPLAY=:0 python3 Desktop/V1-PZ_GP.py
+
 sudo killall python3
 ```
 
-Release IP
-```
-Open a terminal and su - to root.
-Type ifconfig to show the current IP address that you received from DHCP.
-Type dhcpcd -k to send the appropriate signals to dhcpcd.
-Now bring the interface back up by typing ifup eth0.
-Type ifconfig to show the new IP address.
-```
