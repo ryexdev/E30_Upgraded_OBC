@@ -1,82 +1,90 @@
 # E30_Upgraded_OBC
+https://www.raspberrypi.org/software/
+
+Use "Rasberry Pi Imager"
+
 https://desertbot.io/blog/headless-pi-zero-w-wifi-setup-windows
+
+Place an empty file called "SSH" into memory drive root
+
+Place a file with the contents below named "wpa_supplicant.conf" into memory drive root
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+  ssid="Zeke"
+  psk="beer4pass"
+}
+```
 
 Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
 sudo apt update -y
 sudo apt full-upgrade -y
 sudo apt update -y
-
-curl https://get.pimoroni.com/uptodate | bash
-```
-Install keyboard for on-screen debugging
-```
-sudo apt install matchbox-keyboard
 ```
 Install screen driver (and rotates it 90*)
 ```
 cd ~/
-sudo rm -rf LCD-show
-git clone https://github.com/goodtft/LCD-show.git
-chmod -R 755 LCD-show
-cd LCD-show/
-sudo ./MHS35-show 90
-```
-https://raspberrypiwiki.com/index.php?title=2.8_inch_Touch_Screen_for_Pi_zero&mobileaction=toggle_view_mobile
-```
-cd ~/
-sudo git clone https://github.com/tianyoujian/MZDPI.git
+git clone https://github.com/tianyoujian/MZDPI.git
 cd MZDPI/vga
-sudo nano mzp280v01br-autoinstall-online
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
 ```
-Change display_rotate as needed. 2 or 4 works for vertical.
-We are using "4".
+Change the following values
 ```
-sudo chmod +x mzp280v01br-autoinstall-online
-sudo ./mzp280v01br-autoinstall-online
+cd MZDPI/vga
+sudo nano mzdpi-vga-autoinstall-online
 ```
-Change screen options
+Change "swapxy" below to "0"
+```
+echo "dtoverlay=ads7846,penirq=27,swapxy=0,xmin=200,xmax=3850,ymin=200,ymax=3850" >> /boot/tmp.txt
+```
+```
+echo "display_rotate=4" >> /boot/tmp.txt
+```
+```
+echo "framebuffer_width=480" >> /boot/tmp.txt
+```
+```
+echo "framebuffer_height=640" >> /boot/tmp.txt
+```
+Reload your changes
+```
+cd MZDPI/vga
+sudo chmod +x mzdpi-vga-autoinstall-online
+sudo ./mzdpi-vga-autoinstall-online
+sudo reboot
+```
+
+Edit file
 ```
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
-Paste this as entire text file replacement
+Replace entire contents with this
 ```
 Section "InputClass"
         Identifier      "calibration"
         MatchProduct    "ADS7846 Touchscreen"
         Option  "Calibration"   "195 3895 240 3813"
-        Option  "SwapAxes"      "1"
+        Option  "SwapAxes"      "0"
         Option "InvertX"        "False"
         Option "InvertY"        "True"
 EndSection
 ```
-Run on startup to change blueing issue
-```
-sudo nano /etc/rc.local
-```
-Place at the end of the file, before "exit 0"
-```
-sudo raspi-gpio set 8 a2
-sudo raspi-gpio set 7 a2
-```
-
 Install Guizero for PY Graphics program
 ```
 sudo pip3 install guizero
 ```
 
-Menu -> Preference -> Appearance Settings
-
 Install Font;_
 * https://www.1001fonts.com/digital-7-font.html
 * /home/pi in the file explorer
 * Create a new folder and name it “.fonts”
-* Right click > Create new > Folder, and type “.fonts”
-* Paste the files into the “.fonts” folder you just created
+* Paste the font files into the “.fonts” folder you just created
 
-Menu -> Preferences -> Localisation -> Set your timezone
-
-
+Menu -> Preferences (or RPI Setup) -> Localisation -> Set your timezone
 
 ```
 sudo apt install xscreensaver
@@ -85,10 +93,11 @@ Menu -> Preferences -> Screensaver
 
 Disable Screen Saver
 
-
 GPS
 ```
 sudo apt-get install python gpsd gpsd-clients
+```
+```
 sudo pip3 install gps
 ```
 Test using ```cgps```, should output info on command line
@@ -104,23 +113,19 @@ unclutter -idle 0
 
 Auto Run program
 ```
-sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
-@python3 /home/pi/Desktop/V1-PZ_GP.py
-```
-
-```
-DISPLAY=:0 python3 V1-PZ_GP.py
-sudo killall python3
-
-sudo nano ./.config/lxsession/LXDE-pi/autostart
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 @python3 /home/pi/Desktop/V1-PZ_GP.py
 ```
 
 Trouble Shooting
 ```
-udo apt-get purge python3
+sudo apt-get purge python3
 sudo apt update
 sudo apt-get install python3
+
+DISPLAY=:0 python3 V1-PZ_GP.py
+DISPLAY=:0 python3 Desktop/V1-PZ_GP.py
+sudo killall python3
 ```
 
 Release IP
