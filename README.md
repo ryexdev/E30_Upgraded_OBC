@@ -124,6 +124,7 @@ sudo apt update
 sudo apt-get install python3
 
 DISPLAY=:0 python3 V1-PZ_GP.py
+DISPLAY=:0 python3 Desktop/V1-PZ_GP.py
 sudo killall python3
 ```
 
