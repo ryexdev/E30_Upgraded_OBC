@@ -106,9 +106,12 @@ sudo apt install unclutter
 sudo reboot
 ```
 ```
-unclutter -idle 0
+sudo nano /etc/default/unclutter
 ```
-
+Change the last line to below
+```
+EXTRA_OPTS="-idle 0 -display :0 -root"
+```
 Auto Run program
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
