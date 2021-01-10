@@ -46,6 +46,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
+   call("sudo killall python3", shell = True)
 
 def Hour_Pressed():
    global MainTextMode
