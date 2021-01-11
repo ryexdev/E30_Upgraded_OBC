@@ -22,7 +22,6 @@ sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
 #Declare GPS
 gpsd = None
-UpdateTimeCycle = 1200 
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -225,12 +224,6 @@ def GPS_Data():
     GPSGaugeCluster.delete(GPSspeedMainReading)
     GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
-    if UpdateTimeCycle >= 1200:
-        gpsutc = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
-        os.system('sudo date -u --set="%s"' % gpsutc)
-        UpdateTimeCycle = 0
-    else:
-        UpdateTimeCycle += 1
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
