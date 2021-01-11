@@ -140,7 +140,7 @@ sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
 Update Program
 ```
 cd Desktop/E30_Upgraded_OBC
-sudo git fetch
+sudo git pull
 ```
 
 Trouble Shooting
