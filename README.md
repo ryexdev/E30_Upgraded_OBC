@@ -131,6 +131,17 @@ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 @python3 /home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 ```
 
+Download Program
+```
+cd Desktop
+sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
+```
+
+Update Program
+```
+cd Desktop/E30_Upgraded_OBC
+sudo git fetch
+```
 
 Trouble Shooting
 ```
