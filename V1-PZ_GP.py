@@ -213,6 +213,7 @@ def GPS_Data():
     global GPSspeedMin
     global GPSspeedMax
     global GPSspeedMainReading
+    global GPSspeedSecondaryReading
     global gpsp
     global gpsd
     global UpdateTimeCycle
@@ -220,10 +221,13 @@ def GPS_Data():
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
     GPSspeedTargetP = GPSspeed
+    GPSspeedSecondaryTargetP = gpsd.fix.status
     GPSGaugeCluster.delete(GPSspeedNeedle)
     GPSGaugeCluster.delete(GPSspeedMainReading)
+    GPSGaugeCluster.delete(GPSspeedSecondaryReading)
     GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
+    GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedSecondaryTargetP,size=20)
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
@@ -417,11 +421,16 @@ GPSspeedMin = 0
 GPSspeedMax = 140
 GPSspeedTitle = "GPS MPH"
 GPSspeedTitleSize = 20
+GPSspeedSecondaryTitle = "Sat Fix"
 #///////////////////
 GPSspeedTargetP = 0.0
 GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc, GPSspeedx, GPSspeedy, color="red", width=5)
 GPSspeedMainText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+10, text = GPSspeedTitle,size=GPSspeedTitleSize)
 GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = "0",size=20)
+
+GPSspeedSecondaryText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+10, text = GPSspeedSecondaryTitle,size=GPSspeedTitleSize)
+GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = "0",size=20)
+
 GPSspeedMinText = GPSGaugeCluster.text(GPSspeedxc-50 , GPSspeedyc+105, text = GPSspeedMin,size=14)
 GPSspeedMaxText = GPSGaugeCluster.text(GPSspeedxc+100, GPSspeedyc-20, text = GPSspeedMax,size=14)
 GPSspeedMax1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="red", width=4)
