@@ -42,6 +42,7 @@ MainTextMode = ''
 def hdat_Pressed():
    global MainTextMode
    MainTextMode = 'hdat'
+   call("sudo reboot", shell = True)
 
 def mindat_Pressed():
    global MainTextMode
