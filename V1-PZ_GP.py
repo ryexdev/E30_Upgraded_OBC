@@ -217,13 +217,12 @@ def GPS_Data():
     global GPSspeedSecondaryReading
     global gpsp
     global gpsd
-    global UpdateTimeCycle
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
     GPSspeedTargetP = GPSspeed
     GPSspeedSecondaryTargetP = 0
-    GPSspeedSecondaryTargetP = gpsd.fix.status
+    GPSspeedSecondaryTargetP = gpsd.fix.speed
     GPSGaugeCluster.delete(GPSspeedNeedle)
     GPSGaugeCluster.delete(GPSspeedMainReading)
     GPSGaugeCluster.delete(GPSspeedSecondaryReading)
@@ -423,7 +422,7 @@ GPSspeedMin = 0
 GPSspeedMax = 140
 GPSspeedTitle = "GPS MPH"
 GPSspeedTitleSize = 20
-GPSspeedSecondaryTitle = "Sat Fix"
+GPSspeedSecondaryTitle = "Raw MPH"
 #///////////////////
 GPSspeedTargetP = 0.0
 GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc, GPSspeedx, GPSspeedy, color="red", width=5)
