@@ -439,7 +439,7 @@ for i in range(1, 10):
 for i in range(0, 11):
     GPSspeedDashCover = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), color="white", width=5)
 #GPS Threading
-    gpsp = GpsPoller()
+gpsp = GpsPoller()
 gpsp.start()
 spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
