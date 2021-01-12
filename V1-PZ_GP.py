@@ -234,7 +234,6 @@ def GPS_Data():
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
     GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+100, text = GPSspeedSecondaryTargetP,size=20)
     if gpsd.utc != None and gpsd.utc != '' and gpsd.utc != PrevUTC:
-        print("**ACTIVE**")
         if UpdateTimeCycle >= 60:
             gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
             os.system('sudo date -u --set="%s"' % gpstime)
@@ -242,8 +241,7 @@ def GPS_Data():
             PrevUTC = gpsd.utc
         else:
             UpdateTimeCycle += 1
-    else:
-        print("X")
+            
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
