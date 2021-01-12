@@ -145,6 +145,8 @@ sudo git pull
 
 Trouble Shooting
 ```
+sudo chmod -R 777 /home/pi/Desktop/E30_Upgraded_OBC
+
 sudo apt-get purge python3
 
 DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
