@@ -23,6 +23,8 @@ sock.setblocking(0)
 """
 #Declare GPS
 gpsd = None
+UpdateTimeCycle = 0 
+PrevUTC = 0
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -217,6 +219,8 @@ def GPS_Data():
     global GPSspeedSecondaryReading
     global gpsp
     global gpsd
+    global UpdateTimeCycle
+    global PrevUTC
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
@@ -229,6 +233,17 @@ def GPS_Data():
     GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
     GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+100, text = GPSspeedSecondaryTargetP,size=20)
+    if gpsd.utc != None and gpsd.utc != '' and gpsd.utc != PrevUTC:
+        print("**ACTIVE**")
+        if UpdateTimeCycle >= 60:
+            gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
+            os.system('sudo date -u --set="%s"' % gpstime)
+            UpdateTimeCycle = 0
+            PrevUTC = gpsd.utc
+        else:
+            UpdateTimeCycle += 1
+    else:
+        print("X")
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
