@@ -142,7 +142,12 @@ Update Program
 cd Desktop/E30_Upgraded_OBC
 sudo git pull
 ```
-
+GIT Control
+```
+git add V1-PZ_GP.py
+sudo git commit -m "Note"
+sudo git push
+```
 Trouble Shooting
 ```
 sudo chmod -R 777 /home/pi/Desktop/E30_Upgraded_OBC
