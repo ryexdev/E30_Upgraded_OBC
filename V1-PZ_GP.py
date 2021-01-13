@@ -77,14 +77,16 @@ def TrackMode_Pressed():
 def GPSMode_Pressed():
     TRACK.hide()
     GPS.show()
-    
+
+def ADMINMode_Pressed():
+   GPS.hide()
+   ADMIN.show()  
+
 def OBCMode_Pressed():
    global MainTextMode
    MainTextMode = 'hour'
-   TRACK.hide()
-   GPS.hide()
+   ADMIN.hide()
    OBC.show()
-
 
 def OBC_Data():
     global MainTextMode
@@ -276,7 +278,6 @@ TrackMode.bg = "white"
 #******************************************************************************************************************************
 #----------------TRACK MENU----------------************************************************************************************
 #******************************************************************************************************************************
-#TRACK = App(title="TRACK")
 TRACK = Window(OBC, title = "TRACK")
 TRACK.bg = "BLACK"
 TRACK.full_screen = True
@@ -461,8 +462,50 @@ spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
-OBCMode= PushButton(GPS, command=OBCMode_Pressed, text="OBC", width=50, height=4)
-OBCMode.bg = "white"
+ADMINMode = PushButton(GPS, command=ADMINMode_Pressed, text="Admin", width=50, height=4)
+ADMINMode.bg = "white"
 GPSGaugeCluster.repeat(250, GPS_Data)
+#******************************************************************************************************************************
+#----------------ADMIN MENU----------------************************************************************************************
+#******************************************************************************************************************************
+ADMINspacing = 1
+ADMIN = Window(OBC, title="ADMIN", width=480, height=600, layout="grid")
+ADMIN.bg = "BLACK"
+ADMIN.full_screen = True
+#ADMIN BUTTONS
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+AdminSpacer = Text(ADMIN, text = "         Admin         ", font="digital-7", width=11, height="2", size=69, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Row 1----
+ADMINButton1 = PushButton(ADMIN, command=hdat_Pressed, text="Reboot                            ", align="left", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton1.bg = "white"
+ADMINButton2 = PushButton(ADMIN, command=mindat_Pressed, text="                        Shutdown", align="right", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton2.bg = "white"
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Row 2----
+ADMINButton3 = PushButton(ADMIN, command=hdat_Pressed, text="Kill Py                             ", align="left", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton3.bg = "white"
+ADMINButton4 = PushButton(ADMIN, command=mindat_Pressed, text="                            Update", align="right", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton4.bg = "white"
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Status 1----
+ADMINStatus1 = Text(ADMIN, text="        WIFI Status        ", size=22, grid=[0,ADMINspacing])
+ADMINStatus1.bg = "red"
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Status 2----
+ADMINStatus2 = Text(ADMIN, text="        GPS Status        ", size=22, grid=[0,ADMINspacing])
+ADMINStatus2.bg = "red"
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Status 3----
+ADMINStatus3 = Text(ADMIN, text="        BT Status        ", size=22, grid=[0,ADMINspacing])
+ADMINStatus3.bg = "red"
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Menu Change----
+OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                        OBC                        ", align="bottom", height=3, width="fill", grid=[0,ADMINspacing])
+OBCMode.bg = "white"
+ADMINspacing += 1
+
+
+
 
 OBC.display()
