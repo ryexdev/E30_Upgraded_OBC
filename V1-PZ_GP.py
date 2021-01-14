@@ -95,7 +95,7 @@ def Shutdown_Pressed():
     call("sudo shutdown -h now", shell = True)
     
 def Update_Pressed():
-    call("sudo git config --global user.name 'ryanredbaron';sudo git config --global user.password '713abce4b12fc26da456c3bf168c7f42d846df5f';sudo git reset --hard;sudo git pull --all;sudo reboot", shell = True)
+    call("sudo git reset --hard;sudo git config --global user.name 'ryanredbaron';sudo git config --global user.password '713abce4b12fc26da456c3bf168c7f42d846df5f';sudo git pull --all;sudo reboot", shell = True)
     
 def OBC_Data():
     global MainTextMode
