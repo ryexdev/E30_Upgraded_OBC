@@ -139,6 +139,9 @@ sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
 TEST 1 - 
 TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
 TEST 3 - 
+
+git config --global user.name ""
+git config --global user.password ""
 ```
 
 Update Program
