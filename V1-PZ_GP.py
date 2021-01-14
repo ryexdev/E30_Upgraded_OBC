@@ -260,9 +260,11 @@ def GPS_Data():
 def Wifi_Status():
     ADMINStatus1.bg = "green"
     try:
-        socket.create_connection(("1.1.1.1", 53))
+        IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
+        AdminTitle.value = (IpAddressSocket.getsockname())[0]
         ADMINStatus1.bg = "green"
     except OSError:
+        AdminTitle.value = "Admin"
         ADMINStatus1.bg = "red"
 
 def GPS_Status():
@@ -505,7 +507,7 @@ ADMIN.bg = "BLACK"
 ADMIN.full_screen = True
 #ADMIN BUTTONS
 #----Title----
-AdminSpacer = Text(ADMIN, text = "Admin", font="digital-7", width=20, height="2", size=38, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
+AdminTitle = Text(ADMIN, text = "Admin", font="digital-7", width=20, height="2", size=38, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Row 1----
 ADMINButton1 = PushButton(ADMIN, command=Reboot_Pressed, text="Reboot", align="left", height="3", width=12, grid=[0,ADMINspacing])
