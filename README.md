@@ -143,6 +143,8 @@ TEST 3 -
 git config --global credential.helper store
 
 cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot
+
+git reset --hard
 ```
 
 Update Program
