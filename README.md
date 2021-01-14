@@ -135,12 +135,21 @@ Download Program
 ```
 cd Desktop
 sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
+
+TEST 1 - 
+TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
+TEST 3 - 
 ```
 
 Update Program
 ```
 cd Desktop/E30_Upgraded_OBC
 sudo git pull
+```
+HARD Reset - Deletes all local
+```
+git reset --hard
+git pull --all
 ```
 GIT Control
 ```
