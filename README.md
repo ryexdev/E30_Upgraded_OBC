@@ -23,6 +23,10 @@ sudo apt full-upgrade -y
 sudo apt update -y
 ```
 
+Install keyboard for various debugging
+```
+sudo apt install matchbox-keyboard
+```
 
 Install screen driver (and rotates it 90*)
 ```
