@@ -141,6 +141,8 @@ TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
 TEST 3 - 
 
 git config --global credential.helper store
+
+cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot
 ```
 
 Update Program
