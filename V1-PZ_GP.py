@@ -258,7 +258,7 @@ def Wifi_Status():
     ADMINStatus1.bg = "green"
     try:
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
-        AdminTitle.value = (IpAddressSocket.getsockname())[0] + " " + str((((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[3]).split(":"))[0:1])
+        AdminTitle.value = (IpAddressSocket.getsockname())[0] + " " + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[1]) + " " + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[2]) + " " + ':'.join(((((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[3]).split(":"))[0:2])
         ADMINStatus1.bg = "green"
     except OSError:
         AdminTitle.value = "Admin"
@@ -501,7 +501,7 @@ ADMIN.bg = "BLACK"
 ADMIN.full_screen = True
 #ADMIN BUTTONS
 #----Title----
-AdminTitle = Text(ADMIN, text = "Admin", font="digital-7", width=20, height="2", size=38, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
+AdminTitle = Text(ADMIN, text = "Admin", font="digital-7", width=23, height="2", size=34, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Row 1----
 ADMINButton1 = PushButton(ADMIN, command=Reboot_Pressed, text="Reboot", align="left", height="3", width=12, grid=[0,ADMINspacing])
