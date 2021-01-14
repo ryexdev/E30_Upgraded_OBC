@@ -9,7 +9,6 @@ from random import randint
 import socket
 #GPS Comms
 from gps import *
-from time import *
 import threading
 #Drawing
 from guizero import *
@@ -103,6 +102,7 @@ def OBC_Data():
     if MainTextMode == '':
         TRACK.hide()
         GPS.hide()
+        #ADMIN.hide()
         MainTextMode = 'hour'
     if MainTextMode == 'hdat':
         OBCMainText.value = 'h/Dat'
@@ -228,23 +228,20 @@ def GPS_Data():
     global GPSspeedMin
     global GPSspeedMax
     global GPSspeedMainReading
-    global GPSspeedSecondaryReading
     global gpsp
     global gpsd
     global UpdateTimeCycle
     global PrevUTC
     global GlobalGPSStatus
+    global GPSspeedMainReadingSize
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
     GPSspeedTargetP = GPSspeed
-    GPSspeedSecondaryTargetP = gpsd.fix.speed
     GPSGaugeCluster.delete(GPSspeedNeedle)
     GPSGaugeCluster.delete(GPSspeedMainReading)
-    GPSGaugeCluster.delete(GPSspeedSecondaryReading)
-    GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=5)
-    GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTargetP,size=20)
-    GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+100, text = GPSspeedSecondaryTargetP,size=20)
+    GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=8)
+    GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc+50 , GPSspeedyc+90, text = int(GPSspeedTargetP),size=GPSspeedMainReadingSize)
     if gpsd.utc != None and gpsd.utc != '' and gpsd.utc != PrevUTC:
         if UpdateTimeCycle >= 60:
             gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
@@ -261,7 +258,7 @@ def Wifi_Status():
     ADMINStatus1.bg = "green"
     try:
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
-        AdminTitle.value = (IpAddressSocket.getsockname())[0]
+        AdminTitle.value = (IpAddressSocket.getsockname())[0] + " " + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[1:3])
         ADMINStatus1.bg = "green"
     except OSError:
         AdminTitle.value = "Admin"
@@ -468,26 +465,23 @@ GPSspeedy = 0
 GPSspeedMin = 0
 GPSspeedMax = 140
 GPSspeedTitle = "GPS MPH"
-GPSspeedTitleSize = 20
+GPSspeedTitleSize = 30
+GPSspeedMainReadingSize = 60
 GPSspeedSecondaryTitle = "Raw MPH"
 #///////////////////
 GPSspeedTargetP = 0.0
 GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc, GPSspeedx, GPSspeedy, color="red", width=5)
-GPSspeedMainText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+10, text = GPSspeedTitle,size=GPSspeedTitleSize)
-GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = "0",size=20)
-
-GPSspeedSecondaryText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+75, text = GPSspeedSecondaryTitle,size=GPSspeedTitleSize)
-GPSspeedSecondaryReading = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+100, text = "0",size=20)
-
-GPSspeedMinText = GPSGaugeCluster.text(GPSspeedxc-50 , GPSspeedyc+105, text = GPSspeedMin,size=14)
-GPSspeedMaxText = GPSGaugeCluster.text(GPSspeedxc+100, GPSspeedyc-20, text = GPSspeedMax,size=14)
-GPSspeedMax1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="red", width=4)
-GPSspeedMin1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="blue", width=4)
+GPSspeedMainText = GPSGaugeCluster.text(GPSspeedxc , GPSspeedyc+35, text = GPSspeedTitle,size=GPSspeedTitleSize)
+GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc+50 , GPSspeedyc+90, text = "0",size=GPSspeedMainReadingSize)
+GPSspeedMinText = GPSGaugeCluster.text(GPSspeedxc-50 , GPSspeedyc+105, text = GPSspeedMin,size=20)
+GPSspeedMaxText = GPSGaugeCluster.text(GPSspeedxc+100, GPSspeedyc-20, text = GPSspeedMax,size=20)
+GPSspeedMax1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((100 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="red", width=8)
+GPSspeedMin1 = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((0 - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="blue", width=8)
 GPSspeedMaxRadius = GaugeWidth/3
 for i in range(1, 10):
-    GPSspeedDashes = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="black", width=2)
+    GPSspeedDashes = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSradius), color="black", width=4)
 for i in range(0, 11):
-    GPSspeedDashCover = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), color="white", width=5)
+    GPSspeedDashCover = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), GPSspeedyc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * GPSspeedMaxRadius), color="white", width=10)
 #GPS Threading
 gpsp = GpsPoller()
 gpsp.start()
