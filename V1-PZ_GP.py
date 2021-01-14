@@ -95,7 +95,7 @@ def Shutdown_Pressed():
     call("sudo shutdown -h now", shell = True)
     
 def Update_Pressed():
-    call("sudo git pull --all;sudo reboot", shell = True)
+    call("cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot", shell = True)
     
 def OBC_Data():
     global MainTextMode
