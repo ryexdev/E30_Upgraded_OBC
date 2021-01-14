@@ -23,7 +23,7 @@ sock.setblocking(0)
 """
 #Declare GPS
 gpsd = None
-UpdateTimeCycle = 0 
+UpdateTimeCycle = 30
 PrevUTC = 0
 
 class GpsPoller(threading.Thread):
@@ -41,15 +41,14 @@ class GpsPoller(threading.Thread):
 
 MainTextMode = ''
 
+#---------Button Controls---------
 def hdat_Pressed():
    global MainTextMode
    MainTextMode = 'hdat'
-   call("sudo reboot", shell = True)
 
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   call("sudo killall python3", shell = True)
 
 def Hour_Pressed():
    global MainTextMode
@@ -68,7 +67,6 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
-   call("sudo shutdown -h now", shell = True)
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -87,7 +85,19 @@ def OBCMode_Pressed():
    MainTextMode = 'hour'
    ADMIN.hide()
    OBC.show()
+   
+def Reboot_Pressed():
+    call("sudo reboot", shell = True)
 
+def KillAll_Pressed():
+    call("sudo killall python3", shell = True)
+
+def Shutdown_Pressed():
+    call("sudo shutdown -h now", shell = True)
+    
+def Update_Pressed():
+    call("sudo shutdown -h now", shell = True)
+    
 def OBC_Data():
     global MainTextMode
     if MainTextMode == '':
@@ -223,11 +233,11 @@ def GPS_Data():
     global gpsd
     global UpdateTimeCycle
     global PrevUTC
+    global GlobalGPSStatus
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
     GPSspeedTargetP = GPSspeed
-    GPSspeedSecondaryTargetP = 0
     GPSspeedSecondaryTargetP = gpsd.fix.speed
     GPSGaugeCluster.delete(GPSspeedNeedle)
     GPSGaugeCluster.delete(GPSspeedMainReading)
@@ -243,7 +253,28 @@ def GPS_Data():
             PrevUTC = gpsd.utc
         else:
             UpdateTimeCycle += 1
-            
+        GlobalGPSStatus = 1
+    else:
+        GlobalGPSStatus = 0
+        
+def Wifi_Status():
+    ADMINStatus1.bg = "green"
+    try:
+        socket.create_connection(("1.1.1.1", 53))
+        ADMINStatus1.bg = "green"
+    except OSError:
+        ADMINStatus1.bg = "red"
+
+def GPS_Status():
+    global GlobalGPSStatus
+    if GlobalGPSStatus == 1:
+        ADMINStatus2.bg = "green"
+    else:
+        ADMINStatus2.bg = "red"
+        
+def BT_Status():    
+    ADMINStatus3.bg = "red"
+
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
@@ -473,21 +504,26 @@ ADMIN = Window(OBC, title="ADMIN", width=480, height=600, layout="grid")
 ADMIN.bg = "BLACK"
 ADMIN.full_screen = True
 #ADMIN BUTTONS
-ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
-AdminSpacer = Text(ADMIN, text = "         Admin         ", font="digital-7", width=11, height="2", size=69, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
+#----Title----
+AdminSpacer = Text(ADMIN, text = "Admin", font="digital-7", width=20, height="2", size=38, color="orange", grid=[0,ADMINspacing]);ADMINspacing += 1;
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Row 1----
-ADMINButton1 = PushButton(ADMIN, command=hdat_Pressed, text="Reboot                            ", align="left", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton1 = PushButton(ADMIN, command=Reboot_Pressed, text="Reboot", align="left", height="3", width=12, grid=[0,ADMINspacing])
 ADMINButton1.bg = "white"
-ADMINButton2 = PushButton(ADMIN, command=mindat_Pressed, text="                        Shutdown", align="right", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton1.text_size = 18
+ADMINButton2 = PushButton(ADMIN, command=Shutdown_Pressed, text="Shutdown", align="right", height="3", width=12, grid=[0,ADMINspacing])
 ADMINButton2.bg = "white"
+ADMINButton2.text_size = 18
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Row 2----
-ADMINButton3 = PushButton(ADMIN, command=hdat_Pressed, text="Kill Py                             ", align="left", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton3 = PushButton(ADMIN, command=KillAll_Pressed, text="Kill Py", align="left", height="3", width=12, grid=[0,ADMINspacing])
 ADMINButton3.bg = "white"
-ADMINButton4 = PushButton(ADMIN, command=mindat_Pressed, text="                            Update", align="right", height="3", width="fill", grid=[0,ADMINspacing])
+ADMINButton3.text_size = 18
+ADMINButton4 = PushButton(ADMIN, command=Update_Pressed, text="Update", align="right", height="3", width=12, grid=[0,ADMINspacing])
 ADMINButton4.bg = "white"
-ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+ADMINButton4.text_size = 18
+spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Status 1----
 ADMINStatus1 = Text(ADMIN, text="        WIFI Status        ", size=22, grid=[0,ADMINspacing])
 ADMINStatus1.bg = "red"
@@ -497,7 +533,7 @@ ADMINStatus2 = Text(ADMIN, text="        GPS Status        ", size=22, grid=[0,A
 ADMINStatus2.bg = "red"
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Status 3----
-ADMINStatus3 = Text(ADMIN, text="        BT Status        ", size=22, grid=[0,ADMINspacing])
+ADMINStatus3 = Text(ADMIN, text="         BT Status         ", size=22, grid=[0,ADMINspacing])
 ADMINStatus3.bg = "red"
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Menu Change----
@@ -506,6 +542,8 @@ OBCMode.bg = "white"
 ADMINspacing += 1
 
 
-
+ADMINStatus1.repeat(5000, Wifi_Status)
+ADMINStatus2.repeat(1000, GPS_Status)
+ADMINStatus3.repeat(250, BT_Status)
 
 OBC.display()
