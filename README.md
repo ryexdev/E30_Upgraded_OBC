@@ -148,8 +148,8 @@ sudo git pull
 ```
 HARD Reset - Deletes all local
 ```
-git reset --hard
-git pull --all
+sudo git reset --hard
+sudo git pull --all
 ```
 GIT Control
 ```
