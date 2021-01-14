@@ -136,7 +136,7 @@ Download Program
 cd Desktop
 sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
 
-TEST 1 - 
+TEST 1 - 639e52b8c47279940c7616a4aa5ba3121eedacde
 TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
 TEST 3 - 
 
