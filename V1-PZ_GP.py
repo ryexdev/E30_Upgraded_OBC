@@ -95,7 +95,7 @@ def Shutdown_Pressed():
     call("sudo shutdown -h now", shell = True)
     
 def Update_Pressed():
-    call("git reset --hard;git pull --all;sudo reboot", shell = True)
+    call("sudo git reset --hard;sudo git pull --all;sudo reboot", shell = True)
     
 def OBC_Data():
     global MainTextMode
