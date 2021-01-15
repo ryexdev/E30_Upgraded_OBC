@@ -24,6 +24,7 @@ sock.setblocking(0)
 gpsd = None
 UpdateTimeCycle = 30
 PrevUTC = 0
+GPSErrorCounter = 0 
 
 class GpsPoller(threading.Thread):
   def __init__(self):
@@ -234,6 +235,7 @@ def GPS_Data():
     global PrevUTC
     global GlobalGPSStatus
     global GPSspeedMainReadingSize
+    global GPSErrorCounter
     GPSspeed = round((gpsd.fix.speed*2.237),2)
     if math.isnan(GPSspeed) or GPSspeed < 1:
         GPSspeed = 0
@@ -248,11 +250,14 @@ def GPS_Data():
             os.system('sudo date -u --set="%s"' % gpstime)
             UpdateTimeCycle = 0
             PrevUTC = gpsd.utc
+            GPSErrorCounter = 0
         else:
             UpdateTimeCycle += 1
         GlobalGPSStatus = 1
     else:
-        GlobalGPSStatus = 0
+        GPSErrorCounter += 1 
+        if GPSErrorCounter > 2:
+            GlobalGPSStatus = 0
         
 def Wifi_Status():
     ADMINStatus1.bg = "green"
@@ -265,7 +270,7 @@ def Wifi_Status():
         ADMINStatus1.bg = "red"
 
 def GPS_Status():
-    global GlobalGPSStatus
+    global GlobalGPSStatus    
     if GlobalGPSStatus == 1:
         ADMINStatus2.bg = "green"
     else:
