@@ -16,6 +16,11 @@ network={
 }
 ```
 
+Setup Local Timezone
+```
+sudo raspi-config
+```
+
 Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
 ```
 sudo apt update -y
