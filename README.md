@@ -146,7 +146,7 @@ sudo reboot
 
 TEST 1 - 639e52b8c47279940c7616a4aa5ba3121eedacde
 TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
-TEST 3 - 
+TEST 3 - d77387e5fa7f9ef8e89353a89c35d2efbebd3a2a 
 
 sudo git config credential.helper store
 
