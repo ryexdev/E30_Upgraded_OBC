@@ -77,7 +77,10 @@ Section "InputClass"
         Option "InvertY"        "True"
 EndSection
 ```
-
+Reboot
+```
+Sudo Reboot
+```
 
 Install Guizero for PY Graphics program
 ```
