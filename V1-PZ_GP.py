@@ -11,7 +11,7 @@ import socket
 from gps import *
 import threading
 #Drawing
-from guizero import *
+from guizero import App, Drawing
 """
 #UDP Variables
 UDP_IP = "255.255.255.255"
