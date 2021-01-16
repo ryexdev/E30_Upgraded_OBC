@@ -64,7 +64,6 @@ Reload your changes
 cd MZDPI/vga
 sudo chmod +x mzdpi-vga-autoinstall-online
 sudo ./mzdpi-vga-autoinstall-online
-sudo reboot
 ```
 
 Edit file
