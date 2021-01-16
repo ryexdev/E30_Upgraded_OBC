@@ -41,7 +41,7 @@ Change the following values
 cd MZDPI/vga
 sudo nano mzdpi-vga-autoinstall-online
 ```
-Change "swapxy" below to "0"
+Change values below
 ```
 echo "dtoverlay=ads7846,penirq=27,swapxy=0,xmin=200,xmax=3850,ymin=200,ymax=3850" >> /boot/tmp.txt
 ```
