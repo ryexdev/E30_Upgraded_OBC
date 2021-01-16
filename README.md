@@ -11,8 +11,8 @@ country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 network={
-  ssid="Zeke"
-  psk="beer4pass"
+  ssid="SSID"
+  psk="PASSWORD"
 }
 ```
 
