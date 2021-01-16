@@ -99,9 +99,6 @@ Install Font;_
 * Paste the font files into the “.fonts” folder you just created
 
 
-Menu -> Preferences (or RPI Setup) -> Localisation -> Set your timezone
-
-
 ```
 sudo apt install xscreensaver
 ```
