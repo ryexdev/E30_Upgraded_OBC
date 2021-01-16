@@ -84,7 +84,7 @@ Sudo Reboot
 
 Install Guizero for PY Graphics program
 ```
-sudo pip3 install guizero
+sudo pip3 install guizero --force
 ```
 
 
