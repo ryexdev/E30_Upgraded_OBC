@@ -147,7 +147,7 @@ TEST 1 - 639e52b8c47279940c7616a4aa5ba3121eedacde
 TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
 TEST 3 - 
 
-git config credential.helper store
+sudo git config credential.helper store
 
 cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot
 
