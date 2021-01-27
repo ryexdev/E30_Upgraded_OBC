@@ -1,3 +1,9 @@
+- [ ] Lite OS
+- [ ] OpenBox
+- [ ] Raspotify
+- [ ] Tkinter
+
+
 # E30_Upgraded_OBC
 https://www.raspberrypi.org/software/
 
