@@ -1,13 +1,13 @@
 - [x] Lite OS
 - [x] OpenBox
 - [ ] Raspotify
-- [ ] Tkinter
+- [x] Tkinter
 
 
 # E30_Upgraded_OBC
 https://www.raspberrypi.org/software/
 
-Use "Rasberry Pi Imager"
+Use "Rasberry Pi Imager", install OS Lite
 
 Place an empty file called "SSH" into memory drive root (see downloads)
 
@@ -27,11 +27,16 @@ Setup Local Timezone
 sudo raspi-config
 ```
 
-Run the usual updates/upgrades. Upgrade will take some time (45+ minutes on a Pi Zero)
+Run the usual updates/upgrades
 ```
-sudo apt update -y
-sudo apt full-upgrade -y
-sudo apt update -y
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install git -y
+sudo apt install python3-pip -y
+sudo apt-get install python3-tk -y
+sudo apt-get install python gpsd gpsd-clients -y
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install --no-install-recommends raspberrypi-ui-mods lxsession -y
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox -y
 ```
 
 Install keyboard for various debugging
@@ -115,9 +120,6 @@ Disable Screen Saver
 
 GPS
 ```
-sudo apt-get install python gpsd gpsd-clients
-```
-```
 sudo pip3 install gps
 ```
 Test using ```cgps```, should output info on command line
@@ -127,6 +129,7 @@ Disable Cursor
 ```
 sudo apt install unclutter
 ```
+Edit the following file
 ```
 sudo nano /etc/default/unclutter
 ```
@@ -140,6 +143,7 @@ Auto Run program
 ```
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 ```
+Place the following line into the file above
 ```
 @python3 /home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 ```
@@ -149,49 +153,15 @@ Download Program
 cd Desktop
 sudo git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
 sudo reboot
-
-TEST 1 - 639e52b8c47279940c7616a4aa5ba3121eedacde
-TEST 2 - 713abce4b12fc26da456c3bf168c7f42d846df5f
-TEST 3 - d77387e5fa7f9ef8e89353a89c35d2efbebd3a2a 
-
-sudo git config credential.helper store
-
-cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot
-
-git reset --hard
 ```
 
-Update Program
-```
-cd Desktop/E30_Upgraded_OBC
-sudo git pull
-```
-HARD Reset - Deletes all local
-```
-sudo git reset --hard
-sudo git pull --all
-```
-GIT Control
-```
-git add V1-PZ_GP.py
-sudo git commit -m "Note"
-sudo git push
-```
 Trouble Shooting
 ```
-sudo chmod -R 777 /home/pi/Desktop/E30_Upgraded_OBC
-
-sudo apt-get purge python3
+cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot
 
 DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
+
 DISPLAY=:0 python3 V1-PZ_GP.py
 
 sudo killall python3
-
-cd
-cd Desktop
-git clone https://github.com/ryanredbaron/E30_Upgraded_OBC
-cd E30_Upgraded_OBC
-git remote update -usern
 ```
-
