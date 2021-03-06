@@ -1,6 +1,5 @@
 - [x] Lite OS
-- [ ] OpenBox
-https://raspberrypi.stackexchange.com/questions/52099/using-openbox-to-autostart-gui-application-raspberry-pi-3
+- [x] OpenBox
 - [ ] Raspotify
 - [ ] Tkinter
 
