@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.0"
+SoftVers = "v1.1"
 #--------------------------------------------
 import os
 from subprocess import call
@@ -267,7 +267,7 @@ def Wifi_Status():
     try:
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
         #AdminTitle.value = (IpAddressSocket.getsockname())[0] + "-" + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[1]) + "/" + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[2]) + "-" + ':'.join(((((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[3]).split(":"))[0:2])
-        AdminTitle.value = (IpAddressSocket.getsockname())[0] + "-" + SoftVers
+        AdminTitle.value = (IpAddressSocket.getsockname())[0] + " - " + SoftVers
         ADMINStatus1.bg = "green"
     except OSError:
         AdminTitle.value = "Admin"
