@@ -2,7 +2,7 @@
 SoftVers = "v1.27"
 #--------------------------------------------
 import os
-from subprocess import call,Popen,PIPE,communicate
+from subprocess import call,Popen,PIPE
 import time
 from datetime import datetime
 import math
@@ -59,7 +59,7 @@ def mindat_Pressed():
    global player
    MainTextMode = 'mindat'
    player.stdin.write("s")
-   print(player.communicate()[0])
+   player.communicate()[0]
 
 def Hour_Pressed():
    global MainTextMode
