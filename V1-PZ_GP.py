@@ -56,6 +56,7 @@ def hdat_Pressed():
 
 def mindat_Pressed():
    global MainTextMode
+   global stdin
    MainTextMode = 'mindat'
    stdout_data = stdin.write("s")
 
