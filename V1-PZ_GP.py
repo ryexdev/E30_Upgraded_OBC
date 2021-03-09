@@ -56,7 +56,6 @@ def hdat_Pressed():
 
 def mindat_Pressed():
    global MainTextMode
-   global player
    MainTextMode = 'mindat'
    player.communicate(b'n')[0]
 
@@ -76,7 +75,6 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
-   global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
    player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
