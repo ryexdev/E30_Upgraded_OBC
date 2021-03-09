@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.22"
+SoftVers = "v1.23"
 #--------------------------------------------
 import os
 from subprocess import call,Popen
@@ -75,7 +75,8 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
-   Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
+   filelist = glob.glob('/home/pi/Music/F2/*.mp3')
+   player = subprocess.Popen(["mpg123", "-z", "--list"] + filelist, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -118,7 +119,6 @@ def OBC_Data():
         OBCMainText.value = 'h/Dat'
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
-        #call("s", shell = True)
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
