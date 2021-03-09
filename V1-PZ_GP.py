@@ -99,6 +99,7 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
+   global player
    MainTextMode = 'memo'
    player = VLC()
    player.addPlaylist()
