@@ -27,7 +27,7 @@ class VLC:
 
     def addPlaylist(self):
         self.mediaList = self.Player.media_list_new()
-        path = r"home/pi/Music/F2/"
+        path = r"/home/pi/Music/F2/"
         songs = os.listdir(path)
         for s in songs:
             self.mediaList.add_media(self.Player.media_new(os.path.join(path,s)))
