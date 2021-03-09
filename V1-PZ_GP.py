@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.18"
+SoftVers = "v1.20"
 #--------------------------------------------
 import os
 from subprocess import call
@@ -73,6 +73,7 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
+   global MP3Player
    MainTextMode = 'memo'
    MP3Player = subprocess.Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
 
@@ -108,7 +109,6 @@ def Update_Pressed():
     
 def OBC_Data():
     global MainTextMode
-    global MP3Player
     if MainTextMode == '':
         TRACK.hide()
         GPS.hide()
