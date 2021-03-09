@@ -56,8 +56,9 @@ def hdat_Pressed():
 
 def mindat_Pressed():
    global MainTextMode
+   global player
    MainTextMode = 'mindat'
-   txt = "s"
+   txt = "f"
    x = txt.encode()
    player.stdin.write(x)
 
