@@ -56,9 +56,8 @@ def hdat_Pressed():
 
 def mindat_Pressed():
    global MainTextMode
-   global stdin
    MainTextMode = 'mindat'
-   stdout_data = stdin.write("s")
+   stdout_data = player.stdin.write("s")
 
 def Hour_Pressed():
    global MainTextMode
@@ -76,7 +75,7 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
-   global stdin
+   global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
    player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=PIPE, stderr=PIPE)
