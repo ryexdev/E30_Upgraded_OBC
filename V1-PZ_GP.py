@@ -56,10 +56,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   txt = "f"
-   x = txt.encode()
-   player.stdin.write(x)
-   player
+   player.stop()
 
 def Hour_Pressed():
    global MainTextMode
@@ -79,8 +76,8 @@ def Memo_Pressed():
    global MainTextMode
    global player
    MainTextMode = 'memo'
-   p = vlc.MediaPlayer("/home/pi/Music/F2/*.mp3")
-   p.play()
+   player = vlc.MediaPlayer("/home/pi/Music/F2/*.mp3")
+   player.play()
 
 def TrackMode_Pressed():
    OBC.hide()
