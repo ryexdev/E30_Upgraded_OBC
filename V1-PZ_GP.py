@@ -60,6 +60,7 @@ def mindat_Pressed():
    txt = "f"
    x = txt.encode()
    player.stdin.write(x)
+   print("DINK")
 
 def Hour_Pressed():
    global MainTextMode
