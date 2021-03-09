@@ -2,7 +2,7 @@
 SoftVers = "v1.27"
 #--------------------------------------------
 import os
-from subprocess import call,Popen,PIPE
+from subprocess import call, Popen, PIPE, DEVNULL, STDOUT
 import time
 from datetime import datetime
 import math
@@ -58,7 +58,7 @@ def mindat_Pressed():
    global MainTextMode
    global player
    MainTextMode = 'mindat'
-   player.stdin.write('s'.encode())
+   player.communicate(b'n')[0]
 
 def Hour_Pressed():
    global MainTextMode
@@ -79,7 +79,7 @@ def Memo_Pressed():
    global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
-   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
 def TrackMode_Pressed():
    OBC.hide()
