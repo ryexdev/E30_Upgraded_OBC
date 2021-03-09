@@ -76,7 +76,7 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
-   filelist = glob.glob('/home/pi/Music/F2/*.mp3')
+   filelist = glob('/home/pi/Music/F2/*.mp3')
    player = subprocess.Popen(["mpg123", "-z", "--list"] + filelist, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def TrackMode_Pressed():
