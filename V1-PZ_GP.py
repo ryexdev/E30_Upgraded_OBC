@@ -57,7 +57,9 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   player.stdin.write('h')
+   txt = "s"
+   x = txt.encode()
+   player.stdin.write(x)
 
 def Hour_Pressed():
    global MainTextMode
@@ -78,7 +80,7 @@ def Memo_Pressed():
    global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
-   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT, shell=True)
+   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
 def TrackMode_Pressed():
    OBC.hide()
