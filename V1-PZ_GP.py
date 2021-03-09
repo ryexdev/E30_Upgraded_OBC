@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 import math
 import socket
-from random import randint
+from random import randint,shuffle
 #UDP 
 import socket
 #GPS Comms
@@ -29,7 +29,7 @@ class VLC:
         self.mediaList = self.Player.media_list_new()
         path = r"/home/pi/Music/F2/"
         songs = os.listdir(path)
-        for s in songs:
+        for s in shuffle(songs):
             self.mediaList.add_media(self.Player.media_new(os.path.join(path,s)))
         self.listPlayer = self.Player.media_list_player_new()
         self.listPlayer.set_media_list(self.mediaList)
@@ -81,7 +81,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   player.stop()
+   player.next()
 
 def Hour_Pressed():
    global MainTextMode
