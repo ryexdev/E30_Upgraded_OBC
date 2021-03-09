@@ -57,7 +57,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   os.write(slave, 's')
+   stdout_data = player.communicate(input='s')[0]
 
 def Hour_Pressed():
    global MainTextMode
