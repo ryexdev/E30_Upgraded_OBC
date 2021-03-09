@@ -78,7 +78,7 @@ def Memo_Pressed():
    global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
-   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, shell=True)
+   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
 def TrackMode_Pressed():
    OBC.hide()
