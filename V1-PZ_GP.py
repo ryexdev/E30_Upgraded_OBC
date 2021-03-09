@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.26"
+SoftVers = "v1.27"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -57,7 +57,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   stdout_data = player.communicate(input='s')[0]
+   stdout_data = stdin.write("s")
 
 def Hour_Pressed():
    global MainTextMode
