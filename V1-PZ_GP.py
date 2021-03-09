@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.1"
+SoftVers = "v1.2"
 #--------------------------------------------
 import os
 from subprocess import call
@@ -112,6 +112,7 @@ def OBC_Data():
         OBCMainText.value = 'h/Dat'
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
+        call("s", shell = True)
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
@@ -120,6 +121,7 @@ def OBC_Data():
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
+        call("cd Music;mpg123 -Z *.mp3", shell = True)
       
 def Track_Data():
     global radius  
