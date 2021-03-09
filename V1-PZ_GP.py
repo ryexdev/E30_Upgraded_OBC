@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 import math
 import socket
-from random import randint, choice
+from random import randint,shuffle
 #UDP 
 import socket
 #GPS Comms
@@ -28,7 +28,8 @@ class VLC:
     def addPlaylist(self):
         self.mediaList = self.Player.media_list_new()
         path = r"/home/pi/Music/F2/"
-        songs = choice(os.listdir(path))
+        songs = os.listdir(path)
+        shuffle(songs)
         for s in songs:
             self.mediaList.add_media(self.Player.media_new(os.path.join(path,s)))
         self.listPlayer = self.Player.media_list_player_new()
