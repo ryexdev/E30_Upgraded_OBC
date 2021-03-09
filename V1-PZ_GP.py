@@ -74,6 +74,7 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
+   MP3Player = subprocess.Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -127,8 +128,6 @@ def OBC_Data():
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
-        #call("cd Music;mpg123 -Z *.mp3", shell = True)
-        MP3Player = subprocess.Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
       
 def Track_Data():
     global radius  
