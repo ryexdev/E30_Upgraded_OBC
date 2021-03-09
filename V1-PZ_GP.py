@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.21"
+SoftVers = "v1.22"
 #--------------------------------------------
 import os
 from subprocess import call,Popen
@@ -56,7 +56,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-    os.write(slave, 's')
+   os.write(slave, 's')
 
 def Hour_Pressed():
    global MainTextMode
