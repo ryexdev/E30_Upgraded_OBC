@@ -75,6 +75,7 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
+   global player
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
    player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=PIPE, stderr=PIPE)
