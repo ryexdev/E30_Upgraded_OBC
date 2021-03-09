@@ -16,6 +16,7 @@ import threading
 #Drawing
 from guizero import *
 import pty
+from glob import glob
 
 master, slave = os.openpty()
 
