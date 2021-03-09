@@ -1,8 +1,8 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.24"
+SoftVers = "v1.25"
 #--------------------------------------------
 import os
-from subprocess import call,Popen
+from subprocess import call,Popen,PIPE
 import time
 from datetime import datetime
 import math
@@ -77,7 +77,7 @@ def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/F2/*.mp3')
-   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
 def TrackMode_Pressed():
    OBC.hide()
