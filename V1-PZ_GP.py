@@ -2,7 +2,7 @@
 SoftVers = "v1.27"
 #--------------------------------------------
 import os
-from subprocess import call,Popen,PIPE
+from subprocess import call,Popen,PIPE,communicate
 import time
 from datetime import datetime
 import math
