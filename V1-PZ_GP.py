@@ -59,7 +59,7 @@ def mindat_Pressed():
    global player
    MainTextMode = 'mindat'
    player.stdin.write("s")
-   print player.communicate()[0]
+   print(player.communicate()[0])
 
 def Hour_Pressed():
    global MainTextMode
