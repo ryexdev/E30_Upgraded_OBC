@@ -1,9 +1,8 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.20"
+SoftVers = "v1.21"
 #--------------------------------------------
 import os
-from subprocess import call
-import subprocess
+from subprocess import call,Popen
 import time
 from datetime import datetime
 import math
@@ -19,6 +18,7 @@ from guizero import *
 import pty
 
 master, slave = os.openpty()
+
 """
 #UDP Variables
 UDP_IP = "255.255.255.255"
@@ -56,6 +56,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
+    os.write(slave, 's')
 
 def Hour_Pressed():
    global MainTextMode
@@ -73,9 +74,8 @@ def Temp_Pressed():
 
 def Memo_Pressed():
    global MainTextMode
-   global MP3Player
    MainTextMode = 'memo'
-   MP3Player = subprocess.Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
+   Popen(['mpg123', '-Z', '/home/pi/Music/F2/*.mp3'], stdin=master)
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -119,7 +119,6 @@ def OBC_Data():
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
         #call("s", shell = True)
-        os.write(slave, 's')
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
