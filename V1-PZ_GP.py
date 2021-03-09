@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.2"
+SoftVers = "v1.3"
 #--------------------------------------------
 import os
 from subprocess import call
@@ -15,6 +15,9 @@ from gps import *
 import threading
 #Drawing
 from guizero import *
+import pty
+
+master, slave = os.openpty()
 """
 #UDP Variables
 UDP_IP = "255.255.255.255"
@@ -103,6 +106,7 @@ def Update_Pressed():
     
 def OBC_Data():
     global MainTextMode
+    global MP3Player
     if MainTextMode == '':
         TRACK.hide()
         GPS.hide()
@@ -112,7 +116,8 @@ def OBC_Data():
         OBCMainText.value = 'h/Dat'
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
-        call("s", shell = True)
+        #call("s", shell = True)
+        os.write(slave, 's')
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
@@ -121,7 +126,8 @@ def OBC_Data():
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
-        call("cd Music;mpg123 -Z *.mp3", shell = True)
+        #call("cd Music;mpg123 -Z *.mp3", shell = True)
+        MP3Player = subprocess.Popen(['mpg123', '-Z', 'Music/*.mp3'], stdin=master)
       
 def Track_Data():
     global radius  
