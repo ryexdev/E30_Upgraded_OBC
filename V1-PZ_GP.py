@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.5"
+SoftVers = "v1.6"
 #--------------------------------------------
 import os
 from subprocess import call
@@ -128,7 +128,7 @@ def OBC_Data():
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
         #call("cd Music;mpg123 -Z *.mp3", shell = True)
-        MP3Player = subprocess.Popen(['mpg123', '-Z', 'Music/*.mp3'], stdin=master)
+        MP3Player = subprocess.Popen(['mpg123', '-Z', '/home/pi/Music/*.mp3'], stdin=master)
       
 def Track_Data():
     global radius  
