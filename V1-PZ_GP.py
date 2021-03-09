@@ -8,8 +8,6 @@ from datetime import datetime
 import math
 import socket
 from random import randint,shuffle
-#UDP 
-import socket
 #GPS Comms
 from gps import *
 import threading
@@ -18,8 +16,6 @@ from guizero import *
 import pty
 
 from vlc import Instance
-import time
-import os
 
 class VLC:
     def __init__(self):
