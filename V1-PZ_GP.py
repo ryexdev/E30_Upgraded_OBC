@@ -2,7 +2,7 @@
 SoftVers = "v1.27"
 #--------------------------------------------
 import os
-from subprocess import call, Popen, PIPE, DEVNULL, STDOUT
+from subprocess import call
 import time
 from datetime import datetime
 import math
@@ -16,9 +16,8 @@ import threading
 #Drawing
 from guizero import *
 import pty
-from glob import glob
 
-master, slave = os.openpty()
+import vlc
 
 """
 #UDP Variables
@@ -60,7 +59,7 @@ def mindat_Pressed():
    txt = "f"
    x = txt.encode()
    player.stdin.write(x)
-   print("DINK")
+   player
 
 def Hour_Pressed():
    global MainTextMode
@@ -80,8 +79,8 @@ def Memo_Pressed():
    global MainTextMode
    global player
    MainTextMode = 'memo'
-   filelist = glob('/home/pi/Music/F2/*.mp3')
-   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+   p = vlc.MediaPlayer("/home/pi/Music/F2/*.mp3")
+   p.play()
 
 def TrackMode_Pressed():
    OBC.hide()
