@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.31"
+SoftVers = "v1.32"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
