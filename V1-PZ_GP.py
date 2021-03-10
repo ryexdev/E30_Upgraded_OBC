@@ -86,6 +86,7 @@ def Memo_Pressed():
    global player
    try:
         player
+        os.write(slave, bytes('q', 'utf-8'))
         player.stdout.close()
         player.stderr.close()
         player = None
