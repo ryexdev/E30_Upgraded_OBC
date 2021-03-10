@@ -124,10 +124,6 @@ def Update_Pressed():
 def OBC_Data():
     global MainTextMode
     global TextCounter
-    if TextCounter > 4:
-        TextCounter = 0
-    else:
-        TextCounter += 1
     if MainTextMode == '':
         TRACK.hide()
         GPS.hide()
@@ -136,15 +132,18 @@ def OBC_Data():
     if MainTextMode == 'hdat':
         #OBCMainText.value = 'h/Dat'
         OBCMainText.value = 'Play/Pause'
-        if TextCounter == 4:
+        TextCounter += 1
+        if TextCounter > 4:
             MainTextMode = 'hour'
     if MainTextMode == 'mindat':
         #OBCMainText.value = 'min/Dat'
         OBCMainText.value = 'Skip Song'
-        if TextCounter == 4:
+        TextCounter += 1
+        if TextCounter > 4:
             MainTextMode = 'hour'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
+        TextCounter = 0
     if MainTextMode == 'date':
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
     if MainTextMode == 'temp':
@@ -152,7 +151,8 @@ def OBC_Data():
         OBCMainText.value = 'Bluetooth'
     if MainTextMode == 'memo':
         OBCMainText.value = 'Music'
-        if TextCounter == 4:
+        TextCounter += 1
+        if TextCounter > 4:
             MainTextMode = 'hour'
       
 def Track_Data():
