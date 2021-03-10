@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.30"
+SoftVers = "v1.31"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -48,6 +48,8 @@ class GpsPoller(threading.Thread):
       gpsd.next()
 
 MainTextMode = ''
+
+call('echo "connect C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
 
 #---------Button Controls---------
 def hdat_Pressed():
