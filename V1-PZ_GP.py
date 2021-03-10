@@ -57,7 +57,7 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   os.write(slave, 's')
+   os.write(slave, bytes(string, 's'))
 
 def Hour_Pressed():
    global MainTextMode
