@@ -84,15 +84,13 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    global player
+   filelist = glob('/home/pi/Music/*.mp3')
    try:
         player
         os.write(slave, bytes('q', 'utf-8'))
-        player.stdout.close()
-        player.stderr.close()
-        player = None
+        player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
    except:
-       filelist = glob('/home/pi/Music/*.mp3')
-       player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
+        player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
    MainTextMode = 'memo'
 
 def TrackMode_Pressed():
