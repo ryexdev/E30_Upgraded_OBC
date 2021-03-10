@@ -1,8 +1,7 @@
 - [x] Lite OS
 - [x] OpenBox
 - [x] Tkinter
-- [ ] Raspotify
-- [ ] This command downloads and installs the Debian package and adds its apt repository, which ensures you'll always be up to date with upstream changes. "curl -sL https://dtcooper.github.io/raspotify/install.sh | sh"
+- [x] Music
 
 
 # E30_Upgraded_OBC
