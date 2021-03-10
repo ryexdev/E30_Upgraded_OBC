@@ -49,6 +49,10 @@ class GpsPoller(threading.Thread):
 
 MainTextMode = ''
 
+call('echo "pair C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
+time.sleep(3)
+call('echo "trust C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
+time.sleep(3)
 call('echo "connect C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
 
 #---------Button Controls---------
