@@ -320,7 +320,6 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 #OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="> ||                             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
-OBChdat.text_size = 20
 OBChdat.bg = "white"
 #OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                            >>|", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
