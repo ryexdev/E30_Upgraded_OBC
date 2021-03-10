@@ -53,11 +53,12 @@ MainTextMode = ''
 def hdat_Pressed():
    global MainTextMode
    MainTextMode = 'hdat'
+   os.write(slave, bytes('s', 'utf-8'))
 
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   os.write(slave, bytes('s', 'utf-8'))
+   os.write(slave, bytes('f', 'utf-8'))
 
 def Hour_Pressed():
    global MainTextMode
