@@ -79,6 +79,7 @@ def Date_Pressed():
 def Temp_Pressed():
    global MainTextMode
    MainTextMode = 'temp'
+   call('echo "connect C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
 
 def Memo_Pressed():
    global MainTextMode
@@ -125,15 +126,18 @@ def OBC_Data():
         #ADMIN.hide()
         MainTextMode = 'hour'
     if MainTextMode == 'hdat':
-        OBCMainText.value = 'h/Dat'
+        #OBCMainText.value = 'h/Dat'
+        OBCMainText.value = 'Play/Pause'
     if MainTextMode == 'mindat':
-        OBCMainText.value = 'min/Dat'
+        #OBCMainText.value = 'min/Dat'
+        OBCMainText.value = 'Skip Song'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
     if MainTextMode == 'date':
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
     if MainTextMode == 'temp':
-        OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
+        #OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
+        OBCMainText.value = 'Bluetooth Connect'
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
       
@@ -314,9 +318,11 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+#OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChdat = PushButton(OBC, command=hdat_Pressed, text="> ||                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing], size=20)
 OBChdat.bg = "white"
-OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+#OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        >>|", align="right", height="6", width="fill", grid=[0,OBCSpacing], size=20);OBCSpacing += 1;
 OBCmindat.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
@@ -324,9 +330,11 @@ OBChour.bg = "white"
 OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCdate.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+#OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBCtemp = PushButton(OBC, command=Temp_Pressed, text="BTC                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "white"
-OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Memo", align="right", height="6", width="fill", grid=[0,OBCSpacing])
+#OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Memo", align="right", height="6", width="fill", grid=[0,OBCSpacing])
+OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Music", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
