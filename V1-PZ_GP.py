@@ -79,7 +79,6 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    global player
-   call("sudo reboot", shell = True)
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/*.mp3')
    player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
