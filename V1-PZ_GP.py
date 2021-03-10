@@ -18,7 +18,7 @@ from guizero import *
 import pty
 from glob import glob
 
-global master, slave = os.openpty()
+master, slave = os.openpty()
 
 """
 #UDP Variables
