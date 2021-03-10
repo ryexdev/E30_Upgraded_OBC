@@ -124,7 +124,7 @@ def Update_Pressed():
 def OBC_Data():
     global MainTextMode
     global TextCounter
-    if TextCounter == 4
+    if TextCounter == 4:
         TextCounter = 0
     else:
         TextCounter += 1
@@ -137,13 +137,13 @@ def OBC_Data():
         #OBCMainText.value = 'h/Dat'
         OBCMainText.value = 'Play/Pause'
         TextCounter = 0
-        if TextCounter == 3
+        if TextCounter == 3:
             MainTextMode = 'hour'
     if MainTextMode == 'mindat':
         #OBCMainText.value = 'min/Dat'
         OBCMainText.value = 'Skip Song'
         TextCounter = 0
-        if TextCounter == 3
+        if TextCounter == 3:
             MainTextMode = 'hour'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
@@ -155,7 +155,7 @@ def OBC_Data():
     if MainTextMode == 'memo':
         OBCMainText.value = 'Music'
         TextCounter = 0
-        if TextCounter == 3
+        if TextCounter == 3:
             MainTextMode = 'hour'
       
 def Track_Data():
