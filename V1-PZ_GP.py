@@ -87,7 +87,7 @@ def Memo_Pressed():
    MainTextMode = 'memo'
    filelist = glob('/home/pi/Music/*.mp3')
    player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
-   print(player)
+   print(player.read())
 
 def TrackMode_Pressed():
    OBC.hide()
@@ -320,10 +320,10 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 #OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
-OBChdat = PushButton(OBC, command=hdat_Pressed, text="> ||                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChdat = PushButton(OBC, command=hdat_Pressed, text="> ||                             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "white"
 #OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                          >>|", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                            >>|", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
