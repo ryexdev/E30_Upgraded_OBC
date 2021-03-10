@@ -88,6 +88,7 @@ def Memo_Pressed():
         player
         player.stdout.close()
         player.stderr.close()
+        player = None
    except:
        filelist = glob('/home/pi/Music/*.mp3')
        player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
