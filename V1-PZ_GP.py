@@ -8,8 +8,6 @@ from datetime import datetime
 import math
 import socket
 from random import randint
-#UDP 
-import socket
 #GPS Comms
 from gps import *
 import threading
@@ -50,9 +48,7 @@ class GpsPoller(threading.Thread):
 MainTextMode = ''
 
 call('echo "pair C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
-time.sleep(1)
 call('echo "trust C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
-time.sleep(1)
 call('echo "connect C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
 
 #---------Button Controls---------
@@ -142,7 +138,7 @@ def OBC_Data():
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
     if MainTextMode == 'temp':
         #OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
-        OBCMainText.value = 'Bluetooth Connect'
+        OBCMainText.value = 'Bluetooth'
     if MainTextMode == 'memo':
         OBCMainText.value = 'Memo'
       
@@ -291,7 +287,6 @@ def Wifi_Status():
     ADMINStatus1.bg = "green"
     try:
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
-        #AdminTitle.value = (IpAddressSocket.getsockname())[0] + "-" + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[1]) + "/" + str(((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[2]) + "-" + ':'.join(((((time.ctime(os.path.getmtime("/home/pi/Desktop/E30_Upgraded_OBC/V1-PZ_GP.py"))).split(" "))[3]).split(":"))[0:2])
         AdminTitle.value = (IpAddressSocket.getsockname())[0] + " - " + SoftVers
         ADMINStatus1.bg = "green"
     except OSError:
@@ -325,6 +320,7 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 #OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="> ||                             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChdat.text_size = 20
 OBChdat.bg = "white"
 #OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                            >>|", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
