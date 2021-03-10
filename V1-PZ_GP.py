@@ -2,44 +2,23 @@
 SoftVers = "v1.27"
 #--------------------------------------------
 import os
-from subprocess import call
+from subprocess import call,Popen,PIPE
 import time
 from datetime import datetime
 import math
 import socket
-from random import randint,shuffle
+from random import randint
+#UDP 
+import socket
 #GPS Comms
 from gps import *
 import threading
 #Drawing
 from guizero import *
 import pty
+from glob import glob
 
-from vlc import Instance
-
-class VLC:
-    def __init__(self):
-        self.Player = Instance('--loop')
-
-    def addPlaylist(self):
-        self.mediaList = self.Player.media_list_new()
-        path = r"/home/pi/Music/F2/"
-        songs = os.listdir(path)
-        shuffle(songs)
-        for s in songs:
-            self.mediaList.add_media(self.Player.media_new(os.path.join(path,s)))
-        self.listPlayer = self.Player.media_list_player_new()
-        self.listPlayer.set_media_list(self.mediaList)
-    def play(self):
-        self.listPlayer.play()
-    def next(self):
-        self.listPlayer.next()
-    def pause(self):
-        self.listPlayer.pause()
-    def previous(self):
-        self.listPlayer.previous()
-    def stop(self):
-        self.listPlayer.stop()
+master, slave = os.openpty()
 
 """
 #UDP Variables
@@ -78,7 +57,6 @@ def hdat_Pressed():
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   player.next()
 
 def Hour_Pressed():
    global MainTextMode
@@ -98,9 +76,8 @@ def Memo_Pressed():
    global MainTextMode
    global player
    MainTextMode = 'memo'
-   player = VLC()
-   player.addPlaylist()
-   player.play()
+   filelist = glob('/home/pi/Music/*.mp3')
+   player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
 def TrackMode_Pressed():
    OBC.hide()
