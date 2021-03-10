@@ -127,7 +127,7 @@ def OBC_Data():
     if MainTextMode == '':
         TRACK.hide()
         GPS.hide()
-        #ADMIN.hide()
+        ADMIN.hide()
         MainTextMode = 'hour'
     if MainTextMode == 'hdat':
         #OBCMainText.value = 'h/Dat'
@@ -149,6 +149,9 @@ def OBC_Data():
     if MainTextMode == 'temp':
         #OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
         OBCMainText.value = 'Bluetooth'
+        TextCounter += 1
+        if TextCounter > 4:
+            MainTextMode = 'hour'
     if MainTextMode == 'memo':
         OBCMainText.value = 'Music'
         TextCounter += 1
