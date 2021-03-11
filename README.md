@@ -2,9 +2,10 @@
 
 ## Intro
 Welcome to my project! Thanks for checking it out. I will be updated this code on a routine basis, please fork if you'd like to develop and not receive breaking changes. If you have any questions shoot me an email at 
-RyanHendersonContact@gmail.comt
+RyanHendersonContact@gmail.com
 
-There are two ways to set this up. We have the full details below, step by step, but I also have an image that you can flash directly onto an SD card. I have pre-flashed SD cards available for sale via my email address.
+If you find this project useful, please feel free to buy me a cup of coffee!
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=HEU4DWYXZJ77E)
 
 ## Code
 https://www.raspberrypi.org/software/
@@ -167,7 +168,3 @@ DISPLAY=:0 python3 V1-PZ_GP.py
 
 sudo killall python3
 ```
-
-Donation Link
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=HEU4DWYXZJ77E)
