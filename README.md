@@ -1,7 +1,7 @@
 # E30_Upgraded_OBC
 
 ## Intro
-Welcome to my project! Thanks for checking it out. I will be updated this code on a routine basis, please fork if you'd like to develop and not receive breaking changes. If you have any questions shoot me an email at 
+Welcome to my project! Thanks for checking it out. I will be updating this code on a routine basis, please fork if you'd like to develop and not receive breaking changes. If you have any questions shoot me an email at 
 RyanHendersonContact@gmail.com
 
 If you find this project useful, please feel free to buy me a cup of coffee!
