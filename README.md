@@ -3,9 +3,9 @@ https://www.raspberrypi.org/software/
 
 Use "Rasberry Pi Imager", install OS Lite
 
-Place an empty file called "SSH" into memory drive root (see downloads)
+Place an empty file called "SSH" into memory drive root
 
-Place a file with the contents below named "wpa_supplicant.conf" into memory drive root (see downloads)
+Place a file with the contents below named "wpa_supplicant.conf" into memory drive root
 ```
 country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
