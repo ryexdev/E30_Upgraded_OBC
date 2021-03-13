@@ -18,14 +18,15 @@ from glob import glob
 
 master, slave = os.openpty()
 
-"""
+
 #UDP Variables
 UDP_IP = "255.255.255.255"
 UDP_PORT = 8888
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((UDP_IP, UDP_PORT))
 sock.setblocking(0)
-"""
+
+
 #Declare GPS
 gpsd = None
 UpdateTimeCycle = 30
