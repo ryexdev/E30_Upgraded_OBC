@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v1.35"
+SoftVers = "v2.0"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -13,18 +13,18 @@ from gps import *
 import threading
 #Drawing
 from guizero import *
-import pty
+#import pty
 from glob import glob
 
-master, slave = os.openpty()
+#master, slave = os.openpty()
 
 
 #UDP Variables
-UDP_IP = "255.255.255.255"
-UDP_PORT = 8888
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((UDP_IP, UDP_PORT))
-sock.setblocking(0)
+#UDP_IP = "255.255.255.255"
+#UDP_PORT = 8888
+#sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+#sock.bind((UDP_IP, UDP_PORT))
+#sock.setblocking(0)
 
 
 #Declare GPS
@@ -58,12 +58,12 @@ call('echo "connect C9:5C:FD:10:04:0C" | bluetoothctl', shell = True)
 def hdat_Pressed():
    global MainTextMode
    MainTextMode = 'hdat'
-   os.write(slave, bytes('s', 'utf-8'))
+   #os.write(slave, bytes('s', 'utf-8'))
 
 def mindat_Pressed():
    global MainTextMode
    MainTextMode = 'mindat'
-   os.write(slave, bytes('f', 'utf-8'))
+   #os.write(slave, bytes('f', 'utf-8'))
 
 def Hour_Pressed():
    global MainTextMode
@@ -84,12 +84,12 @@ def Memo_Pressed():
    global MainTextMode
    global player
    filelist = glob('/home/pi/Music/*.mp3')
-   try:
-        player
-        os.write(slave, bytes('q', 'utf-8'))
-        player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
-   except:
-        player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
+   #try:
+        #player
+        #os.write(slave, bytes('q', 'utf-8'))
+        #player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
+   #except:
+        #player = Popen(["mpg123", "-z", "--list"] + filelist, stdin=master, stdout=PIPE, stderr=PIPE)
    MainTextMode = 'memo'
 
 def TrackMode_Pressed():
@@ -173,7 +173,7 @@ def Track_Data():
     global Q1MainReading
     global Q1ErrorCount
     try:
-      data, addr = sock.recvfrom(256)
+      #data, addr = sock.recvfrom(256)
       Q1TargetP = float(data.decode("utf-8"))
       Q1ErrorCount = 0
     except:
