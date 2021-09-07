@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.14"
+SoftVers = "v2.15"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -273,13 +273,9 @@ def Wifi_Status():
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
         AdminTitle.value = (IpAddressSocket.getsockname())[0] + " - " + SoftVers
         ADMINStatus1.bg = "green"
-        IpAddressSocket.close()
-        return True
     except OSError:
         AdminTitle.value = "Admin" + " - " + SoftVers
         ADMINStatus1.bg = "red"
-        pass
-    return False
 
 def GPS_Status():
     global GlobalGPSStatus    
@@ -550,7 +546,7 @@ OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                     
 OBCMode.bg = "white"
 ADMINspacing += 1
 
-ADMINStatus1.repeat(5000, Wifi_Status)
+ADMINStatus1.repeat(1000, Wifi_Status)
 ADMINStatus2.repeat(5000, GPS_Status)
 
 OBC.display()
