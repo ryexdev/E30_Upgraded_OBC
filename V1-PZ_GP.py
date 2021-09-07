@@ -273,9 +273,13 @@ def Wifi_Status():
         IpAddressSocket = socket.create_connection(("1.1.1.1", 53))
         AdminTitle.value = (IpAddressSocket.getsockname())[0] + " - " + SoftVers
         ADMINStatus1.bg = "green"
+        IpAddressSocket.close()
+        return True
     except OSError:
-        AdminTitle.value = "Admin"
+        AdminTitle.value = "Admin" + " - " + SoftVers
         ADMINStatus1.bg = "red"
+        pass
+    return False
 
 def GPS_Status():
     global GlobalGPSStatus    
