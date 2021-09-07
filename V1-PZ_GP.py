@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.1"
+SoftVers = "v2.2"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -13,7 +13,6 @@ from gps import *
 import threading
 #Drawing
 from guizero import *
-
 
 #Declare GPS
 gpsd = None
@@ -285,9 +284,6 @@ def GPS_Status():
     else:
         ADMINStatus2.bg = "red"
         
-def BT_Status():    
-    ADMINStatus3.bg = "green"
-
 #******************************************************************************************************************************
 #----------------OBC MENU----------------************************************************************************************
 #******************************************************************************************************************************
@@ -543,17 +539,13 @@ ADMINStatus2 = Text(ADMIN, text="        GPS Status        ", size=22, grid=[0,A
 ADMINStatus2.bg = "red"
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Status 3----
-ADMINStatus3 = Text(ADMIN, text="         BT Status         ", size=22, grid=[0,ADMINspacing])
-ADMINStatus3.bg = "red"
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Menu Change----
 OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                        OBC                         ", align="bottom", height=3, width="fill", grid=[0,ADMINspacing])
 OBCMode.bg = "white"
 ADMINspacing += 1
 
-
 ADMINStatus1.repeat(5000, Wifi_Status)
-ADMINStatus2.repeat(1000, GPS_Status)
-ADMINStatus3.repeat(250, BT_Status)
+ADMINStatus2.repeat(5000, GPS_Status)
 
 OBC.display()
