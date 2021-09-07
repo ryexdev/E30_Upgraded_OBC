@@ -540,6 +540,7 @@ ADMINStatus2.bg = "red"
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Status 3----
 ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
+ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspacing += 1;
 #----Menu Change----
 OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                        OBC                         ", align="bottom", height=3, width="fill", grid=[0,ADMINspacing])
 OBCMode.bg = "white"
