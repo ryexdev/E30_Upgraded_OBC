@@ -547,6 +547,6 @@ OBCMode.bg = "white"
 ADMINspacing += 1
 
 ADMINStatus1.repeat(1000, Wifi_Status)
-ADMINStatus2.repeat(5000, GPS_Status)
+ADMINStatus2.repeat(1000, GPS_Status)
 
 OBC.display()
