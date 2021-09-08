@@ -310,7 +310,7 @@ OBCtemp.text_color = "white"
 OBCmemo = PushButton(OBC, command=Memo_Pressed, text="         Shutdown          ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "black"
 OBCmemo.text_color = "white"
-TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="Track", height="12", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "black"
 TrackMode.text_color = "white"
 #******************************************************************************************************************************
