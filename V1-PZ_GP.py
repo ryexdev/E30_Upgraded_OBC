@@ -290,10 +290,10 @@ OBCMainText.bg = "#5E0000"
 OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChdat = PushButton(OBC, command=hdat_Pressed, text="Speed                          ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChdat = PushButton(OBC, command=hdat_Pressed, text="             Speed             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "black"
 OBChdat.text_color = "white"
-OBCmindat = PushButton(OBC, command=Temp_Pressed, text="               Temperature", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCmindat = PushButton(OBC, command=Temp_Pressed, text="       Temperature       ", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "black"
 OBCmindat.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
