@@ -107,7 +107,7 @@ def OBC_Data():
     #if MainTextMode == 'hdat':
     #    OBCMainText.value = 'h/Dat'
      if MainTextMode == 'Speed':
-        OBCMainText.value = int(GPSspeedTargetP)  
+        #OBCMainText.value = int(GPSspeedTargetP)  
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
@@ -118,9 +118,10 @@ def OBC_Data():
     if MainTextMode == 'temp':
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
         
+    #if MainTextMode == 'memo':
+    #    OBCMainText.value = 'memo'
     if MainTextMode == 'memo':
-        OBCMainText.value = 'memo'
-    
+        call("sudo shutdown -h now", shell = True)
       
 def Track_Data():
     global radius
