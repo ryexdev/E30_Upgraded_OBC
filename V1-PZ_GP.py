@@ -105,7 +105,7 @@ def OBC_Data():
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
         
     if MainTextMode == 'hdat':
-        OBCMainText.value = str(int(GPSspeedTargetP)) + "Mph"
+        OBCMainText.value = str(int(GPSspeedTargetP)) + " Mph"
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
