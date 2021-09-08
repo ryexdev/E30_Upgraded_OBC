@@ -1,6 +1,7 @@
 #---------Manual Revision Number-------------
 SoftVers = "v2.22"
 #--------------------------------------------
+#cd;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 import os
 from subprocess import call,Popen,PIPE
 import time
