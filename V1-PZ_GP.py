@@ -284,6 +284,7 @@ OBCSpacing = 1
 OBC = App(title="OBC", width=480, height=600, layout="grid")
 OBC.bg = "#5E0000"
 OBC.full_screen = True
+picture = Picture(OBC, image="e30obc.jpg")
 OBCMainText = Text(OBC, text = "Loading", font="digital-7", width=11, height="2", size=69, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
@@ -293,13 +294,13 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="Speed                          ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
-OBChdat.bg = "white"
+OBChdat.bg = "black"
 OBCmindat = PushButton(OBC, command=Temp_Pressed, text="               Temperature", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChour.bg = "white"
-OBCdate = PushButton(OBC, command=Date_Pressed, text="                           Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCdate.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCtemp = PushButton(OBC, command=mindat_Pressed, text="Update                       ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
