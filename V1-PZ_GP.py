@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.17"
+SoftVers = "v2.16"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -38,8 +38,7 @@ MainTextMode = ''
 #---------Button Controls---------
 def hdat_Pressed():
    global MainTextMode
-   #MainTextMode = 'hdat'
-   MainTextMode = 'Speed'
+   MainTextMode = 'hdat'
 
 def mindat_Pressed():
    global MainTextMode
@@ -104,10 +103,8 @@ def OBC_Data():
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
         
-    #if MainTextMode == 'hdat':
-    #    OBCMainText.value = 'h/Dat'
-     if MainTextMode == 'Speed':
-        #OBCMainText.value = int(GPSspeedTargetP)  
+    if MainTextMode == 'hdat':
+        OBCMainText.value = 'h/Dat'
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
@@ -118,10 +115,9 @@ def OBC_Data():
     if MainTextMode == 'temp':
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
         
-    #if MainTextMode == 'memo':
-    #    OBCMainText.value = 'memo'
     if MainTextMode == 'memo':
-        call("sudo shutdown -h now", shell = True)
+        OBCMainText.value = 'memo'
+    
       
 def Track_Data():
     global radius
