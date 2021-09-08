@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.16"
+SoftVers = "v2.17"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -20,8 +20,6 @@ UpdateTimeCycle = 30
 PrevUTC = 0
 GPSErrorCounter = 0
 
-TextCounter = 0
-
 class GpsPoller(threading.Thread):
   def __init__(self):
     threading.Thread.__init__(self)
@@ -40,7 +38,8 @@ MainTextMode = ''
 #---------Button Controls---------
 def hdat_Pressed():
    global MainTextMode
-   MainTextMode = 'hdat'
+   #MainTextMode = 'hdat'
+   MainTextMode = 'Speed'
 
 def mindat_Pressed():
    global MainTextMode
@@ -104,36 +103,24 @@ def OBC_Data():
         MainTextMode = 'hour'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
-        TextCounter = 0
         
-    if MainTextMode == 'hdat':
-        OBCMainText.value = 'h/Dat'
-        TextCounter = 0
-        MainTextMode = 'hour'
+    #if MainTextMode == 'hdat':
+    #    OBCMainText.value = 'h/Dat'
+     if MainTextMode == 'Speed':
+        OBCMainText.value = int(GPSspeedTargetP)  
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
-        TextCounter = 0
-        MainTextMode = 'hour'
         
     if MainTextMode == 'date':
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
-        TextCounter = 0
-        MainTextMode = 'hour'
         
     if MainTextMode == 'temp':
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
-        TextCounter = 0
-        MainTextMode = 'hour'
         
     if MainTextMode == 'memo':
         OBCMainText.value = 'memo'
-        TextCounter = 0
-        MainTextMode = 'hour'
     
-    TextCounter += 1
-    if TextCounter > 10:
-        MainTextMode = 'hour'
       
 def Track_Data():
     global radius
