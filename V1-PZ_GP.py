@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.18"
+SoftVers = "v2.20"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -104,7 +104,7 @@ def OBC_Data():
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
         
     if MainTextMode == 'hdat':
-        OBCMainText.value = 'h/Dat'
+        OBCMainText.value = GPSspeedTargetP
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
