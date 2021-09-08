@@ -296,20 +296,27 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="Speed                          ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "black"
+OBChdat.text_color = "white"
 OBCmindat = PushButton(OBC, command=Temp_Pressed, text="               Temperature", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCmindat.bg = "white"
+OBCmindat.bg = "black"
+.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
-OBChour.bg = "white"
+OBChour.bg = "black"
+.text_color = "white"
 OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCdate.bg = "white"
+OBCdate.bg = "black"
+.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCtemp = PushButton(OBC, command=mindat_Pressed, text="Update                       ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
-OBCtemp.bg = "white"
+OBCtemp.bg = "black"
+.text_color = "white"
 OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                    Shutdown", align="right", height="6", width="fill", grid=[0,OBCSpacing])
-OBCmemo.bg = "white"
+OBCmemo.bg = "black"
+.text_color = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", height="6", width="8", grid=[0,OBCSpacing])
-TrackMode.bg = "white"
+TrackMode.bg = "black"
+.text_color = "white"
 #******************************************************************************************************************************
 #----------------TRACK MENU----------------************************************************************************************
 #******************************************************************************************************************************
