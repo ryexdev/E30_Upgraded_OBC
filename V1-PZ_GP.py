@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.20"
+SoftVers = "v2.21"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -117,6 +117,7 @@ def OBC_Data():
         
     if MainTextMode == 'memo':
         OBCMainText.value = 'memo'
+        call("sudo shutdown -h now", shell = True)
     
       
 def Track_Data():
@@ -290,7 +291,7 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChdat = PushButton(OBC, command=hdat_Pressed, text="h/dat                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChdat = PushButton(OBC, command=hdat_Pressed, text="Speed                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "white"
 OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "white"
@@ -302,7 +303,7 @@ OBCdate.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "white"
-OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Memo", align="right", height="6", width="fill", grid=[0,OBCSpacing])
+OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Shut", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="TRACK", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
