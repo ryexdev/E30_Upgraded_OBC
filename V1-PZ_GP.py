@@ -297,17 +297,17 @@ OBCmindat = PushButton(OBC, command=Temp_Pressed, text="       Temperature      
 OBCmindat.bg = "black"
 OBCmindat.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBChour = PushButton(OBC, command=Hour_Pressed, text="             Hour             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChour.bg = "black"
 OBChour.text_color = "white"
-OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCdate = PushButton(OBC, command=Date_Pressed, text="              Date              ", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCdate.bg = "black"
 OBCdate.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCtemp = PushButton(OBC, command=mindat_Pressed, text="Update                       ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBCtemp = PushButton(OBC, command=mindat_Pressed, text="           Update           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "black"
 OBCtemp.text_color = "white"
-OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                    Shutdown", align="right", height="6", width="fill", grid=[0,OBCSpacing])
+OBCmemo = PushButton(OBC, command=Memo_Pressed, text="          Shutdown          ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "black"
 OBCmemo.text_color = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
