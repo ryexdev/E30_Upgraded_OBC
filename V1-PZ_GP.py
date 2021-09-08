@@ -284,12 +284,9 @@ OBCSpacing = 1
 OBC = App(title="OBC", width=480, height=600, layout="grid")
 OBC.bg = "black"
 OBC.full_screen = True
-#picture = Picture(OBC, image="/home/pi/Desktop/E30_Upgraded_OBC/e30obc.png", grid=[0,OBCSpacing])
 OBCMainText = Text(OBC, text = "Loading", font="digital-7", width=11, height="2", size=69, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText.bg = "#5E0000"
 OBCMainText.repeat(250, OBC_Data)
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
