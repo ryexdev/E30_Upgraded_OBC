@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.21"
+SoftVers = "v2.22"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -108,6 +108,7 @@ def OBC_Data():
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
+        call("cd Desktop/E30_Upgraded_OBC;sudo git pull --all;sudo reboot", shell = True)
         
     if MainTextMode == 'date':
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
@@ -293,7 +294,7 @@ spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="Speed                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBChdat.bg = "white"
-OBCmindat = PushButton(OBC, command=mindat_Pressed, text="                        min/dat", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
+OBCmindat = PushButton(OBC, command=Temp_Pressed, text="                      Temperature", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCmindat.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChour = PushButton(OBC, command=Hour_Pressed, text="Hour                            ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
@@ -301,7 +302,7 @@ OBChour.bg = "white"
 OBCdate = PushButton(OBC, command=Date_Pressed, text="                            Date", align="right", height="6", width="fill", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCdate.bg = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCtemp = PushButton(OBC, command=Temp_Pressed, text="Temp                           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBCtemp = PushButton(OBC, command=mindat_Pressed, text="Update                         ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "white"
 OBCmemo = PushButton(OBC, command=Memo_Pressed, text="                          Shut", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "white"
