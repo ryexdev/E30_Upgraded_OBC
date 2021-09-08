@@ -304,7 +304,7 @@ OBCdate = PushButton(OBC, command=Date_Pressed, text="              Date        
 OBCdate.bg = "black"
 OBCdate.text_color = "white"
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
-OBCtemp = PushButton(OBC, command=mindat_Pressed, text="           Update           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
+OBCtemp = PushButton(OBC, command=mindat_Pressed, text="            Update           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "black"
 OBCtemp.text_color = "white"
 OBCmemo = PushButton(OBC, command=Memo_Pressed, text="         Shutdown          ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
