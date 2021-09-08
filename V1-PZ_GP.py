@@ -306,6 +306,7 @@ OBCdate.text_color = "white"
 TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "black"
 TrackMode.text_color = "white"
+OBCSpacing += 1
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCtemp = PushButton(OBC, command=mindat_Pressed, text="            Update           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
 OBCtemp.bg = "black"
