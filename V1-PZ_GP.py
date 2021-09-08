@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.15"
+SoftVers = "v2.16"
 #--------------------------------------------
 import os
 from subprocess import call,Popen,PIPE
@@ -102,31 +102,38 @@ def OBC_Data():
         GPS.hide()
         ADMIN.hide()
         MainTextMode = 'hour'
-    if MainTextMode == 'hdat':
-        OBCMainText.value = 'h/Dat'
-        TextCounter += 1
-        if TextCounter > 4:
-            MainTextMode = 'hour'
-    if MainTextMode == 'mindat':
-        OBCMainText.value = 'min/Dat'
-        TextCounter += 1
-        if TextCounter > 4:
-            MainTextMode = 'hour'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
         TextCounter = 0
+        
+    if MainTextMode == 'hdat':
+        OBCMainText.value = 'h/Dat'
+        TextCounter = 0
+        MainTextMode = 'hour'
+        
+    if MainTextMode == 'mindat':
+        OBCMainText.value = 'min/Dat'
+        TextCounter = 0
+        MainTextMode = 'hour'
+        
     if MainTextMode == 'date':
         OBCMainText.value = (datetime.now()).strftime("%m/%d/%y")
+        TextCounter = 0
+        MainTextMode = 'hour'
+        
     if MainTextMode == 'temp':
         OBCMainText.value = (((os.popen("vcgencmd measure_temp").readline()).replace("temp=","")).strip())
-        TextCounter += 1
-        if TextCounter > 4:
-            MainTextMode = 'hour'
+        TextCounter = 0
+        MainTextMode = 'hour'
+        
     if MainTextMode == 'memo':
         OBCMainText.value = 'memo'
-        TextCounter += 1
-        if TextCounter > 4:
-            MainTextMode = 'hour'
+        TextCounter = 0
+        MainTextMode = 'hour'
+    
+    TextCounter += 1
+    if TextCounter > 10:
+        MainTextMode = 'hour'
       
 def Track_Data():
     global radius
