@@ -1,7 +1,7 @@
 #---------Manual Revision Number-------------
 SoftVers = "v2.23"
 #--------------------------------------------
-#cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
+#cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git gc --prune=now;sudo git remote prune origin;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 import os
 from subprocess import call,Popen,PIPE
 import time
@@ -251,14 +251,14 @@ def GPS_Data():
         if UpdateTimeCycle >= 60:
             try:
                 gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
-                str("UPPDATE OK")
+                print("UPPDATE OK")
                 os.system('sudo date -u --set="%s"' % gpstime)
                 UpdateTimeCycle = 0
                 PrevUTC = gpsd.utc
                 GPSErrorCounter = 0
             except:
                 GPSErrorCounter += 1
-                str("Error Updating Time")
+                print("Error Updating Time")
         else:
             UpdateTimeCycle += 1
         GlobalGPSStatus = 1
