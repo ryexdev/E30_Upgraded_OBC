@@ -251,6 +251,7 @@ def GPS_Data():
         if UpdateTimeCycle >= 60:
             try:
                 gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
+                print("----------")
                 print("UPPDATE OK")
                 os.system('sudo date -u --set="%s"' % gpstime)
                 UpdateTimeCycle = 0
@@ -258,6 +259,7 @@ def GPS_Data():
                 GPSErrorCounter = 0
             except:
                 GPSErrorCounter += 1
+                print("----------")
                 print("Error Updating Time")
         else:
             UpdateTimeCycle += 1
