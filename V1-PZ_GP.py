@@ -17,7 +17,11 @@ from guizero import *
 
 #Declare GPS
 gpsd = None
-UpdateTimeCycle = 30
+
+#How often to update time, in seconds
+UpdateTimeCycleTime = 3600
+#Timer, change to adjust boot up time
+UpdateTimeCycleTimer = 3,540
 PrevUTC = 0
 GPSErrorCounter = 0
 
@@ -234,7 +238,8 @@ def GPS_Data():
     global GPSspeedMainReading
     global gpsp
     global gpsd
-    global UpdateTimeCycle
+    global UpdateTimeCycleTime
+    global UpdateTimeCycleTimer
     global PrevUTC
     global GlobalGPSStatus
     global GPSspeedMainReadingSize
@@ -248,13 +253,13 @@ def GPS_Data():
     GPSspeedNeedle = GPSGaugeCluster.line(GPSspeedxc, GPSspeedyc,GPSspeedxc + (math.cos((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), GPSspeedyc + (math.sin((((GPSspeedTargetP - GPSspeedMin) * ((3.141592 * 1.25) - 0)) / (GPSspeedMax - GPSspeedMin))-(3.141592 / .75)) * GPSradius), color="black", width=8)
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc+50 , GPSspeedyc+90, text = int(GPSspeedTargetP),size=GPSspeedMainReadingSize)
     if gpsd.utc != None and gpsd.utc != '' and gpsd.utc != PrevUTC:
-        if UpdateTimeCycle >= 60:
+        if UpdateTimeCycleTimer >= UpdateTimeCycleTime:
             try:
                 gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
                 print("----------")
                 print("UPPDATE OK")
                 os.system('sudo date -u --set="%s"' % gpstime)
-                UpdateTimeCycle = 0
+                UpdateTimeCycleTimer = 0
                 PrevUTC = gpsd.utc
                 GPSErrorCounter = 0
             except:
@@ -262,7 +267,7 @@ def GPS_Data():
                 print("----------")
                 print("Error Updating Time")
         else:
-            UpdateTimeCycle += 1
+            UpdateTimeCycleTimer += 1
         GlobalGPSStatus = 1
     else:
         GPSErrorCounter += 1 
