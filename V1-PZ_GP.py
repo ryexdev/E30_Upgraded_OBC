@@ -2,6 +2,7 @@
 SoftVers = "v2.25"
 #--------------------------------------------
 #cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git gc --prune=now;sudo git remote prune origin;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
+#cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 import os
 from subprocess import call,Popen,PIPE
 import time
