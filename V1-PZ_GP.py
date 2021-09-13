@@ -1,7 +1,7 @@
 #---------Manual Revision Number-------------
-SoftVers = "v2.22"
+SoftVers = "v2.23"
 #--------------------------------------------
-#cd;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
+#cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 import os
 from subprocess import call,Popen,PIPE
 import time
@@ -105,7 +105,7 @@ def OBC_Data():
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
         
     if MainTextMode == 'hdat':
-        OBCMainText.value = str(int(GPSspeedTargetP)) + " Mph"
+        OBCMainText.value = str(int(GPSspeed)) + " Mph"
         
     if MainTextMode == 'mindat':
         OBCMainText.value = 'min/Dat'
@@ -224,6 +224,7 @@ def Track_Data():
 def GPS_Data():
     global GPSradius
     #GPSspeed Gauge
+    global GPSspeed
     global GPSspeedxc
     global GPSspeedyc
     global GPSspeedNeedle
