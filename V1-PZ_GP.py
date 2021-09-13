@@ -101,6 +101,9 @@ def OBC_Data():
     global MainTextMode
     global TextCounter
     if MainTextMode == '':
+        TRACK.hide()
+        GPS.hide()
+        ADMIN.hide()
         MainTextMode = 'hour'
     if MainTextMode == 'hour':
         OBCMainText.value = (datetime.now()).strftime("%I:%M:%S %p")
