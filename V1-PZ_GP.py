@@ -20,8 +20,8 @@ gpsd = None
 
 #How often to update time, in seconds
 UpdateTimeCycleTime = 3600
-#Timer, change to adjust boot up time
-UpdateTimeCycleTimer = 3,540
+#Timer counter, change to adjust boot up time
+UpdateTimeCycleTimer = 3540
 PrevUTC = 0
 GPSErrorCounter = 0
 
@@ -256,16 +256,16 @@ def GPS_Data():
         if UpdateTimeCycleTimer >= UpdateTimeCycleTime:
             try:
                 gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
-                print("----------")
                 print("UPPDATE OK")
                 os.system('sudo date -u --set="%s"' % gpstime)
                 UpdateTimeCycleTimer = 0
                 PrevUTC = gpsd.utc
-                GPSErrorCounter = 0
+                GPSErrorCounter = 0\
+                print("----------")
             except:
                 GPSErrorCounter += 1
-                print("----------")
                 print("Error Updating Time")
+                print("----------")
         else:
             UpdateTimeCycleTimer += 1
         GlobalGPSStatus = 1
