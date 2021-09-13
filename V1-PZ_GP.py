@@ -249,11 +249,16 @@ def GPS_Data():
     GPSspeedMainReading = GPSGaugeCluster.text(GPSspeedxc+50 , GPSspeedyc+90, text = int(GPSspeedTargetP),size=GPSspeedMainReadingSize)
     if gpsd.utc != None and gpsd.utc != '' and gpsd.utc != PrevUTC:
         if UpdateTimeCycle >= 60:
-            gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
-            os.system('sudo date -u --set="%s"' % gpstime)
-            UpdateTimeCycle = 0
-            PrevUTC = gpsd.utc
-            GPSErrorCounter = 0
+            try:
+                gpstime = gpsd.utc[0:4] + gpsd.utc[5:7] + gpsd.utc[8:10] + ' ' + gpsd.utc[11:19]
+                str("UPPDATE OK")
+                os.system('sudo date -u --set="%s"' % gpstime)
+                UpdateTimeCycle = 0
+                PrevUTC = gpsd.utc
+                GPSErrorCounter = 0
+            except:
+                GPSErrorCounter += 1
+                str("Error Updating Time")
         else:
             UpdateTimeCycle += 1
         GlobalGPSStatus = 1
