@@ -19,9 +19,9 @@ from guizero import *
 gpsd = None
 
 #How often to update time, in seconds
-UpdateTimeCycleTime = 3600
+UpdateTimeCycleTime = 10000
 #Timer counter, change to adjust boot up time
-UpdateTimeCycleTimer = 3540
+UpdateTimeCycleTimer = UpdateTimeCycleTime - 60
 PrevUTC = 0
 GPSErrorCounter = 0
 
