@@ -8,7 +8,6 @@ import time
 from datetime import datetime
 import math
 import socket
-from random import randint
 #GPS Comms
 from gps import *
 import threading
@@ -559,7 +558,7 @@ OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                     
 OBCMode.bg = "white"
 ADMINspacing += 1
 
-ADMINStatus1.repeat(1000, Wifi_Status)
-ADMINStatus2.repeat(1000, GPS_Status)
+#ADMINStatus1.repeat(1000, Wifi_Status)
+#ADMINStatus2.repeat(1000, GPS_Status)
 
 OBC.display()
