@@ -260,7 +260,7 @@ def GPS_Data():
                 os.system('sudo date -u --set="%s"' % gpstime)
                 UpdateTimeCycleTimer = 0
                 PrevUTC = gpsd.utc
-                GPSErrorCounter = 0\
+                GPSErrorCounter = 0
                 print("----------")
             except:
                 GPSErrorCounter += 1
