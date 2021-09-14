@@ -124,7 +124,9 @@ def OBC_Data():
     if MainTextMode == 'memo':
         OBCMainText.value = 'memo'
         call("sudo shutdown -h now", shell = True)
-    
+
+def SpeedTrap_Data():
+    print("hey")
       
 def Track_Data():
     global radius
@@ -300,7 +302,6 @@ OBC.bg = "black"
 OBC.full_screen = True
 OBCMainText = Text(OBC, text = "Loading", font="digital-7", width=11, height="3", size=68, color="orange", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCMainText.bg = "#5E0000"
-OBCMainText.repeat(250, OBC_Data)
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBChdat = PushButton(OBC, command=hdat_Pressed, text="             Speed             ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
@@ -327,6 +328,33 @@ OBCtemp.text_color = "white"
 OBCmemo = PushButton(OBC, command=Memo_Pressed, text="         Shutdown          ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCmemo.bg = "black"
 OBCmemo.text_color = "white"
+
+
+
+
+
+#******************************************************************************************************************************
+#----------------Speed Trap----------------************************************************************************************
+#******************************************************************************************************************************
+SpeedTrap = Window(OBC, title = "SPeedTrap")
+SpeedTrap.bg = "BLACK"
+SpeedTrap.full_screen = True
+#Gauge Face Cluster
+DrawingWidth = 480
+DrawingHeight = 480
+NumberOfGauges = 2
+GaugeWidth = DrawingWidth
+GaugeHeight = 480
+GPSGaugeCluster = Drawing(SpeedTrap, width=DrawingWidth, height=DrawingHeight)
+GPSGaugeCluster.oval(0, 0, GaugeWidth/(NumberOfGauges/2), GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
+spacer = Text(SpeedTrap, text="")
+spacer = Text(SpeedTrap, text="")
+spacer = Text(SpeedTrap, text="")
+spacer = Text(SpeedTrap, text="")
+TrackMode = PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode.bg = "white"
+
+
 #******************************************************************************************************************************
 #----------------TRACK MENU----------------************************************************************************************
 #******************************************************************************************************************************
@@ -455,7 +483,6 @@ for i in range(1, 10):
 for i in range(0, 11):
     Q4DashCover = GaugeCluster.line(Q4xc, Q4yc,Q4xc + (math.cos(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), Q4yc + (math.sin(((((i*10) - 0) * ((3.141592 * 1.25) - 0)) / (100 - 0))-(3.141592 / .75)) * Q4MaxRadius), color="white", width=5)
 
-GaugeCluster.repeat(250, Track_Data)
 spacer = Text(TRACK, text="",)
 spacer = Text(TRACK, text="",)
 spacer = Text(TRACK, text="",)
@@ -513,7 +540,6 @@ spacer = Text(GPS, text="")
 spacer = Text(GPS, text="")
 ADMINMode = PushButton(GPS, command=ADMINMode_Pressed, text="Admin", width=50, height=4)
 ADMINMode.bg = "white"
-GPSGaugeCluster.repeat(250, GPS_Data)
 #******************************************************************************************************************************
 #----------------ADMIN MENU----------------************************************************************************************
 #******************************************************************************************************************************
@@ -558,6 +584,11 @@ ADMINspacing += 1;spacer = Text(ADMIN, text="", grid=[0,ADMINspacing]);ADMINspac
 OBCMode = PushButton(ADMIN, command=OBCMode_Pressed, text="                        OBC                         ", align="bottom", height=3, width="fill", grid=[0,ADMINspacing])
 OBCMode.bg = "white"
 ADMINspacing += 1
+
+OBCMainText.repeat(250, OBC_Data)
+SpeedTrap.repeat(1000, SpeedTrap_Data)
+GaugeCluster.repeat(250, Track_Data)
+GPSGaugeCluster.repeat(250, GPS_Data)
 
 #ADMINStatus1.repeat(1000, Wifi_Status)
 ADMINStatus2.repeat(1000, GPS_Status)
