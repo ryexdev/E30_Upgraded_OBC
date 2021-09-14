@@ -350,6 +350,7 @@ SpeedTrap.full_screen = True
 
 SpeedTrapDrawing = Drawing(SpeedTrap, width=480, height=600)
 SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=60)
+SpeedTrapMPH.bg = "white"
 
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
