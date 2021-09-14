@@ -325,9 +325,9 @@ OBChour.text_color = "white"
 OBCdate = PushButton(OBC, command=Date_Pressed, text="              Date              ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCdate.bg = "black"
 OBCdate.text_color = "white"
-TrackMode= PushButton(OBC, command=SpeedTrap_Pressed, text="SpeedTrap", height="6", width="8", grid=[0,OBCSpacing])
-TrackMode.bg = "black"
-TrackMode.text_color = "white"
+SpeedTrapMode = PushButton(OBC, command=SpeedTrap_Pressed, text="SpeedTrap", height="6", width="8", grid=[0,OBCSpacing])
+SpeedTrapMode.bg = "black"
+SpeedTrapMode.text_color = "white"
 OBCSpacing += 1
 spacer = Text(OBC, text="", grid=[0,OBCSpacing]);OBCSpacing += 1;
 OBCtemp = PushButton(OBC, command=mindat_Pressed, text="            Update           ", align="left", height="6", width="fill", grid=[0,OBCSpacing])
@@ -356,7 +356,7 @@ TextSpacing = TextSpacing + 150
 SpeedTrap_Text2 = SpeedTrapDrawing.text(0 , TextSpacing, text = "T",size=60, color="white")
 SpeedTrapTime = SpeedTrapDrawing.text(150 , TextSpacing, text = "00:00",size=60, color="white")
 
-TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="                    Track Mode                     ", align="bottom", height=3, width="fill", text_size=60)
+TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="                    Track Mode                     ", align="bottom", height=6, width="fill")
 TrackMode.bg = "white"
 
 
