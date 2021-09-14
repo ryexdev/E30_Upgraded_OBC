@@ -4,6 +4,10 @@
 Welcome to my project! Thanks for checking it out. I will be updating this code on a routine basis, please fork if you'd like to develop and not receive breaking changes. If you have any questions shoot me an email at 
 RyanHendersonContact@gmail.com
 
+https://www.linkedin.com/pulse/weekend-projects-digital-dash-ryan-henderson/
+
+https://hackaday.com/2021/03/11/raspberry-pi-hitches-a-ride-in-a-1989-bmw-dashboard/
+
 If you find this project useful, please feel free to buy me a cup of coffee!
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=HEU4DWYXZJ77E)
