@@ -324,7 +324,7 @@ OBChour.text_color = "white"
 OBCdate = PushButton(OBC, command=Date_Pressed, text="              Date              ", align="right", height="6", width="fill", grid=[0,OBCSpacing])
 OBCdate.bg = "black"
 OBCdate.text_color = "white"
-TrackMode= PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode= PushButton(OBC, command=SpeedTrap_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "black"
 TrackMode.text_color = "white"
 OBCSpacing += 1
@@ -358,7 +358,7 @@ spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
-TrackMode = PushButton(SpeedTrap, command=SpeedTrap_Pressed, text="SpeedTrap", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="SpeedTrap", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
 
 
