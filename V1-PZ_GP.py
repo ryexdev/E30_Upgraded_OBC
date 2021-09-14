@@ -101,6 +101,7 @@ def OBC_Data():
     global MainTextMode
     global TextCounter
     if MainTextMode == '':
+        SpeedTrap.hide()
         TRACK.hide()
         GPS.hide()
         ADMIN.hide()
