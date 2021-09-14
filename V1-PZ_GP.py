@@ -131,10 +131,10 @@ def OBC_Data():
         call("sudo shutdown -h now", shell = True)
 
 def SpeedTrap_Data():
-    print("SpeedTrap")
+    #print("SpeedTrap")
       
 def Track_Data():
-    print("TrackData")
+    #print("TrackData")
     global radius
     #Q1 Gauge
     global Q1xc
@@ -234,7 +234,7 @@ def Track_Data():
     Q4MainReading = GaugeCluster.text(Q4xc , Q4yc+45, text = Q4TargetP,size=Q4ReadingSize)
     
 def GPS_Data():
-    print("GPSSpeed")
+    #print("GPSSpeed")
     global GPSradius
     #GPSspeed Gauge
     global GPSspeed
