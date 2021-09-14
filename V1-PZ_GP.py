@@ -132,6 +132,7 @@ def OBC_Data():
 
 def SpeedTrap_Data():
     #print("SpeedTrap")
+    pass
       
 def Track_Data():
     #print("TrackData")
