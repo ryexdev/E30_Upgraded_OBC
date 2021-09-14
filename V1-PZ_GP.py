@@ -358,7 +358,7 @@ spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
-TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode = PushButton(SpeedTrap, command=SpeedTrap_Pressed, text="SpeedTrap", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
 
 
