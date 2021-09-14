@@ -356,11 +356,7 @@ TextSpacing = TextSpacing + 150
 SpeedTrap_Text2 = SpeedTrapDrawing.text(0 , TextSpacing, text = "T",size=60, color="white")
 SpeedTrapTime = SpeedTrapDrawing.text(150 , TextSpacing, text = "00:00",size=60, color="white")
 
-spacer = Text(SpeedTrap, text="")
-spacer = Text(SpeedTrap, text="")
-spacer = Text(SpeedTrap, text="")
-spacer = Text(SpeedTrap, text="")
-TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="Track Mode", height="6", width="8")
+TrackMode = PushButton(150 , TextSpacing, SpeedTrap, command=TrackMode_Pressed, text="Track Mode", height="6", width="8")
 TrackMode.bg = "white"
 
 
