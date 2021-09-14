@@ -344,17 +344,13 @@ OBCmemo.text_color = "white"
 #******************************************************************************************************************************
 #----------------Speed Trap----------------************************************************************************************
 #******************************************************************************************************************************
-SpeedTrap = Window(OBC, title = "SPeedTrap")
+SpeedTrap = Window(OBC, title = "SpeedTrap")
 SpeedTrap.bg = "BLACK"
 SpeedTrap.full_screen = True
-#Gauge Face Cluster
-DrawingWidth = 480
-DrawingHeight = 480
-NumberOfGauges = 2
-GaugeWidth = DrawingWidth
-GaugeHeight = 480
-GPSGaugeCluster = Drawing(SpeedTrap, width=DrawingWidth, height=DrawingHeight)
-GPSGaugeCluster.oval(0, 0, GaugeWidth/(NumberOfGauges/2), GaugeHeight/(NumberOfGauges/2), color="white", outline=True)
+
+SpeedTrapDrawing = Drawing(SpeedTrap, width=480, height=600)
+SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=GPSspeedMainReadingSize)
+
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
@@ -500,7 +496,7 @@ spacer = Text(TRACK, text="",)
 GPSMode= PushButton(TRACK, command=GPSMode_Pressed, text="GPS", width=50, height=4)
 GPSMode.bg = "white"
 #******************************************************************************************************************************
-#----------------GPS MENU----------------************************************************************************************
+#----------------GPS Gauge----------------************************************************************************************
 #******************************************************************************************************************************
 GPS = Window(OBC, title = "GPS")
 GPS.bg = "BLACK"
