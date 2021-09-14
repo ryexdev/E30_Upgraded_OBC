@@ -18,7 +18,7 @@ from guizero import *
 #Declare GPS
 gpsd = None
 
-#How often to update time, in milliseconds
+#How often to update time, in seconds
 UpdateTimeCycleTime = 10000
 #Timer counter, change to adjust boot up time
 UpdateTimeCycleTimer = UpdateTimeCycleTime - 60
