@@ -349,13 +349,13 @@ SpeedTrap.bg = "BLACK"
 SpeedTrap.full_screen = True
 
 SpeedTrapDrawing = Drawing(SpeedTrap, width=480, height=600)
-SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=60)
+SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=60, color="white",)
 
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
-TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="Track Mode", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="Track Mode", height="6", width="8")
 TrackMode.bg = "white"
 
 
