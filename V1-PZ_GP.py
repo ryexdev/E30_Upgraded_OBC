@@ -66,9 +66,13 @@ def Temp_Pressed():
 def Memo_Pressed():
    global MainTextMode
    MainTextMode = 'memo'
+   
+def SpeedTrap_Pressed():
+   OBC.hide()
+   SpeedTrap.show()
 
 def TrackMode_Pressed():
-   OBC.hide()
+   SpeedTrap.hide()
    TRACK.show()
    
 def GPSMode_Pressed():
@@ -352,7 +356,7 @@ spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
-TrackMode = PushButton(OBC, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
+TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="Track", height="6", width="8", grid=[0,OBCSpacing])
 TrackMode.bg = "white"
 
 
