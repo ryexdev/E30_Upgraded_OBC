@@ -349,7 +349,7 @@ SpeedTrap.bg = "BLACK"
 SpeedTrap.full_screen = True
 
 SpeedTrapDrawing = Drawing(SpeedTrap, width=480, height=600)
-SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=GPSspeedMainReadingSize)
+SpeedTrapMPH = SpeedTrapDrawing.text(480/2 , 600/2, text = "0",size=60)
 
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
