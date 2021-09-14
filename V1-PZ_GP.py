@@ -350,11 +350,11 @@ SpeedTrap.full_screen = True
 
 SpeedTrapDrawing = Drawing(SpeedTrap, width=480, height=600)
 TextSpacing = 0
-SpeedTrap_Text1 = SpeedTrapDrawing.text(0 , TextSpacing, text = "MPH",size=60, color="white")
-SpeedTrapMPH = SpeedTrapDrawing.text(200 , TextSpacing, text = "0 MPH",size=60, color="white")
+SpeedTrap_Text1 = SpeedTrapDrawing.text(0 , TextSpacing, text = "MPH - ",size=60, color="white")
+SpeedTrapMPH = SpeedTrapDrawing.text(150 , TextSpacing, text = "0",size=60, color="white")
 TextSpacing = TextSpacing + 150
-SpeedTrap_Text2 = SpeedTrapDrawing.text(0 , TextSpacing, text = "Time",size=60, color="white")
-SpeedTrapTime = SpeedTrapDrawing.text(200 , TextSpacing, text = "00:00:00",size=60, color="white")
+SpeedTrap_Text2 = SpeedTrapDrawing.text(0 , TextSpacing, text = "T - ",size=60, color="white")
+SpeedTrapTime = SpeedTrapDrawing.text(150 , TextSpacing, text = "00:00",size=60, color="white")
 
 spacer = Text(SpeedTrap, text="")
 spacer = Text(SpeedTrap, text="")
