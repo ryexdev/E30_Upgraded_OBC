@@ -358,6 +358,7 @@ SpeedTrapTime = SpeedTrapDrawing.text(150 , TextSpacing, text = "00:00",size=60,
 
 TrackMode = PushButton(SpeedTrap, command=TrackMode_Pressed, text="                    Track Mode                     ", align="bottom", height=50, width="fill")
 TrackMode.bg = "white"
+TrackMode.text_size = 12
 
 
 
