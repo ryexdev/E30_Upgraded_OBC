@@ -1,5 +1,5 @@
 #---------Manual Revision Number-------------
-SoftVers = "v3.01"
+SoftVers = "v3.00"
 #--------------------------------------------
 #cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git gc --prune=now;sudo git remote prune origin;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
 #cd;sudo killall python3;cd Desktop/E30_Upgraded_OBC;sudo git pull --all;cd;DISPLAY=:0 python3 Desktop/E30_Upgraded_OBC/V1-PZ_GP.py
@@ -598,7 +598,7 @@ SpeedTrap.repeat(1000, SpeedTrap_Data)
 GaugeCluster.repeat(250, Track_Data)
 GPSGaugeCluster.repeat(250, GPS_Data)
 
-ADMINStatus1.repeat(5000, Wifi_Status)
+ADMINStatus1.repeat(60000, Wifi_Status)
 ADMINStatus2.repeat(1000, GPS_Status)
 
 OBC.display()
