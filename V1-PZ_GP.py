@@ -598,7 +598,7 @@ SpeedTrap.repeat(1000, SpeedTrap_Data)
 GaugeCluster.repeat(250, Track_Data)
 GPSGaugeCluster.repeat(250, GPS_Data)
 
-ADMINStatus1.repeat(60000, Wifi_Status)
+ADMINStatus1.repeat(5000, Wifi_Status)
 ADMINStatus2.repeat(1000, GPS_Status)
 
 OBC.display()
